@@ -1,65 +1,89 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <Machine>ALEX</Machine>
-    <WindowsUser>User</WindowsUser>
+    <Machine>HAXVY</Machine>
+    <WindowsUser>HAXVY</WindowsUser>
     <SolutionConfiguration>Debug|AnyCPU</SolutionConfiguration>
     <PackageArchitecture>neutral</PackageArchitecture>
   </PropertyGroup>
   <ItemGroup>
-    <AppXManifest Include="D:\Telerik Academy\win8-js\WinStoreProject\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\bin\Debug\AppxManifest.xml">
+    <AppXManifest Include="C:\Users\venel_000\Desktop\Telerik\ACADEMY\Win 8 JS Teamwork\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\bin\Debug\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
-    <AppxPackagedFile Include="D:\Telerik Academy\win8-js\WinStoreProject\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\css\default.css">
+    <AppxPackagedFile Include="C:\Users\venel_000\Desktop\Telerik\ACADEMY\Win 8 JS Teamwork\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\css\default.css">
       <PackagePath>css\default.css</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Telerik Academy\win8-js\WinStoreProject\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\pages\home\home.css">
+    <AppxPackagedFile Include="C:\Users\venel_000\Desktop\Telerik\ACADEMY\Win 8 JS Teamwork\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\pages\home\home.css">
       <PackagePath>pages\home\home.css</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Telerik Academy\win8-js\WinStoreProject\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\images\logo.png">
+    <AppxPackagedFile Include="C:\Users\venel_000\Desktop\Telerik\ACADEMY\Win 8 JS Teamwork\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\pages\set\set.css">
+      <PackagePath>pages\set\set.css</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\venel_000\Desktop\Telerik\ACADEMY\Win 8 JS Teamwork\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\images\logo.png">
       <PackagePath>images\logo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Telerik Academy\win8-js\WinStoreProject\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\images\smalllogo.png">
+    <AppxPackagedFile Include="C:\Users\venel_000\Desktop\Telerik\ACADEMY\Win 8 JS Teamwork\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\images\smalllogo.png">
       <PackagePath>images\smalllogo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Telerik Academy\win8-js\WinStoreProject\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\images\splashscreen.png">
+    <AppxPackagedFile Include="C:\Users\venel_000\Desktop\Telerik\ACADEMY\Win 8 JS Teamwork\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\images\splashscreen.png">
       <PackagePath>images\splashscreen.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Telerik Academy\win8-js\WinStoreProject\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\images\storelogo.png">
+    <AppxPackagedFile Include="C:\Users\venel_000\Desktop\Telerik\ACADEMY\Win 8 JS Teamwork\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\images\storelogo.png">
       <PackagePath>images\storelogo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Telerik Academy\win8-js\WinStoreProject\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\js\default.js">
+    <AppxPackagedFile Include="C:\Users\venel_000\Desktop\Telerik\ACADEMY\Win 8 JS Teamwork\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\js\dataLayer.js">
+      <PackagePath>js\dataLayer.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\venel_000\Desktop\Telerik\ACADEMY\Win 8 JS Teamwork\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\js\default.js">
       <PackagePath>js\default.js</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Telerik Academy\win8-js\WinStoreProject\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\js\navigator.js">
+    <AppxPackagedFile Include="C:\Users\venel_000\Desktop\Telerik\ACADEMY\Win 8 JS Teamwork\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\js\models.js">
+      <PackagePath>js\models.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\venel_000\Desktop\Telerik\ACADEMY\Win 8 JS Teamwork\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\js\navigator.js">
       <PackagePath>js\navigator.js</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Telerik Academy\win8-js\WinStoreProject\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\pages\home\home.js">
+    <AppxPackagedFile Include="C:\Users\venel_000\Desktop\Telerik\ACADEMY\Win 8 JS Teamwork\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\js\viewModels.js">
+      <PackagePath>js\viewModels.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\venel_000\Desktop\Telerik\ACADEMY\Win 8 JS Teamwork\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\pages\home\home.js">
       <PackagePath>pages\home\home.js</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Telerik Academy\win8-js\WinStoreProject\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\pages\home\home.html">
+    <AppxPackagedFile Include="C:\Users\venel_000\Desktop\Telerik\ACADEMY\Win 8 JS Teamwork\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\pages\home\homeCodeBehind.js">
+      <PackagePath>pages\home\homeCodeBehind.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\venel_000\Desktop\Telerik\ACADEMY\Win 8 JS Teamwork\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\pages\set\set.js">
+      <PackagePath>pages\set\set.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\venel_000\Desktop\Telerik\ACADEMY\Win 8 JS Teamwork\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\pages\set\setCodeBehind.js">
+      <PackagePath>pages\set\setCodeBehind.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\venel_000\Desktop\Telerik\ACADEMY\Win 8 JS Teamwork\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\pages\home\home.html">
       <PackagePath>pages\home\home.html</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Telerik Academy\win8-js\WinStoreProject\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\default.html">
+    <AppxPackagedFile Include="C:\Users\venel_000\Desktop\Telerik\ACADEMY\Win 8 JS Teamwork\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\default.html">
       <PackagePath>default.html</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Telerik Academy\win8-js\WinStoreProject\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\bin\Debug\resources.pri">
+    <AppxPackagedFile Include="C:\Users\venel_000\Desktop\Telerik\ACADEMY\Win 8 JS Teamwork\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\pages\set\set.html">
+      <PackagePath>pages\set\set.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\venel_000\Desktop\Telerik\ACADEMY\Win 8 JS Teamwork\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\bin\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>
     <ResolvedSDKReference Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.0\ExtensionSDKs\Microsoft.WinJS.1.0\1.0\">
       <Name>Microsoft.WinJS.1.0</Name>
-      <Version>1.0.9200.20789</Version>
+      <Version>1.0.9200.20602</Version>
       <Architecture>Neutral</Architecture>
-      <FrameworkIdentity>Name=Microsoft.WinJS.1.0, MinVersion=1.0.9200.20789</FrameworkIdentity>
+      <FrameworkIdentity>Name=Microsoft.WinJS.1.0, MinVersion=1.0.9200.20602</FrameworkIdentity>
       <AppxLocation>C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.0\ExtensionSDKs\Microsoft.WinJS.1.0\1.0\Microsoft.WinJS.1.0.appx</AppxLocation>
     </ResolvedSDKReference>
   </ItemGroup>
