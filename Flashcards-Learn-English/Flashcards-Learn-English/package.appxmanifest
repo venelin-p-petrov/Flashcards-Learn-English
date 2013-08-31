@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
+  <Identity Name="2d74c189-f8af-49c4-a6ab-0e662ccb96b7" Version="1.0.0.0" Publisher="CN=User" />
+  <Properties>
+    <DisplayName>Flashcards-Learn-English</DisplayName>
+    <PublisherDisplayName>User</PublisherDisplayName>
+    <Logo>images\storelogo.png</Logo>
+  </Properties>
+  <Prerequisites>
+    <OSMinVersion>6.2.1</OSMinVersion>
+    <OSMaxVersionTested>6.2.1</OSMaxVersionTested>
+  </Prerequisites>
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
+  <Applications>
+    <Application Id="App" StartPage="default.html">
+      <VisualElements DisplayName="Flashcards-Learn-English" Logo="images\logo.png" SmallLogo="images\smalllogo.png" Description="Flashcards-Learn-English" ForegroundText="light" BackgroundColor="#376092">
+        <DefaultTile ShowName="allLogos" ShortName="Flashcards: Научи́ Aнгийски" />
+        <SplashScreen Image="images\splashscreen.png" BackgroundColor="#FFFFFF" />
+      </VisualElements>
+    </Application>
+  </Applications>
+  <Capabilities>
+    <Capability Name="internetClient" />
+  </Capabilities>
+</Package>

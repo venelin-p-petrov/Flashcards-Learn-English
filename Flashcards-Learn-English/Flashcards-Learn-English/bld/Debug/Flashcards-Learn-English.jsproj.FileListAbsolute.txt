@@ -1,0 +1,13 @@
+D:\Telerik Academy\win8-js\WinStoreProject\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\bin\Debug\resources.pri
+D:\Telerik Academy\win8-js\WinStoreProject\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\bin\Debug\AppxManifest.xml
+D:\Telerik Academy\win8-js\WinStoreProject\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\bin\Debug\Flashcards-Learn-English.build.appxrecipe
+D:\Telerik Academy\win8-js\WinStoreProject\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\bld\Debug\priconfig.xml.intermediate
+D:\Telerik Academy\win8-js\WinStoreProject\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\bld\Debug\layout.resfiles.intermediate
+D:\Telerik Academy\win8-js\WinStoreProject\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\bld\Debug\resources.resfiles.intermediate
+D:\Telerik Academy\win8-js\WinStoreProject\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\bld\Debug\pri.resfiles.intermediate
+D:\Telerik Academy\win8-js\WinStoreProject\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\bld\Debug\priconfig.xml
+D:\Telerik Academy\win8-js\WinStoreProject\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\bld\Debug\layout.resfiles
+D:\Telerik Academy\win8-js\WinStoreProject\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\bld\Debug\resources.resfiles
+D:\Telerik Academy\win8-js\WinStoreProject\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\bld\Debug\pri.resfiles
+D:\Telerik Academy\win8-js\WinStoreProject\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\bld\Debug\LanguageQualifiers.txt
+D:\Telerik Academy\win8-js\WinStoreProject\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\bld\Debug\ProjectArchitectures.txt
