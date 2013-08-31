@@ -18,8 +18,11 @@
     WinJS.Namespace.define("ViewModels", {
         loadSets: loadSets,
         sets: setList,
-        addSet: function (title, deckNumber, iconUrl) {
-            Data.addSet(new Models.SetModel(title, deckNumber, iconUrl));
+        addSet: function (title, iconUrl) {
+            Data.addSet(new Models.SetModel(title, iconUrl));
+        },
+        removeSet: function (index) {
+            Data.removeSet(index);
         }
     });
 })();

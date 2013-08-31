@@ -16,6 +16,9 @@
     <AppxPackagedFile Include="C:\Users\venel_000\Desktop\Telerik\ACADEMY\Win 8 JS Teamwork\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\css\default.css">
       <PackagePath>css\default.css</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\venel_000\Desktop\Telerik\ACADEMY\Win 8 JS Teamwork\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\pages\create\create.css">
+      <PackagePath>pages\create\create.css</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\venel_000\Desktop\Telerik\ACADEMY\Win 8 JS Teamwork\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\pages\home\home.css">
       <PackagePath>pages\home\home.css</PackagePath>
     </AppxPackagedFile>
@@ -53,6 +56,9 @@
     <AppxPackagedFile Include="C:\Users\venel_000\Desktop\Telerik\ACADEMY\Win 8 JS Teamwork\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\js\viewModels.js">
       <PackagePath>js\viewModels.js</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\venel_000\Desktop\Telerik\ACADEMY\Win 8 JS Teamwork\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\pages\create\create.js">
+      <PackagePath>pages\create\create.js</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\venel_000\Desktop\Telerik\ACADEMY\Win 8 JS Teamwork\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\pages\home\home.js">
       <PackagePath>pages\home\home.js</PackagePath>
     </AppxPackagedFile>
@@ -64,6 +70,9 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\venel_000\Desktop\Telerik\ACADEMY\Win 8 JS Teamwork\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\pages\set\setCodeBehind.js">
       <PackagePath>pages\set\setCodeBehind.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\venel_000\Desktop\Telerik\ACADEMY\Win 8 JS Teamwork\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\pages\create\create.html">
+      <PackagePath>pages\create\create.html</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\venel_000\Desktop\Telerik\ACADEMY\Win 8 JS Teamwork\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\pages\home\home.html">
       <PackagePath>pages\home\home.html</PackagePath>

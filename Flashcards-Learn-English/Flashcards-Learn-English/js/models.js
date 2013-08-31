@@ -1,14 +1,14 @@
 ﻿/// <reference path="//Microsoft.WinJS.1.0/js/base.js" />
 (function () {
-    var SetModel = WinJS.Class.define(function (title, deckNumber, iconUrl) {
+    var SetModel = WinJS.Class.define(function (title, iconUrl) {
         this.title = title;
-        this.deckNumber = deckNumber;
+        this.deckNumber = 3;
         this.iconUrl = iconUrl;
         this.currentDeck = new Models.DeckModel();
         this.lang = "bg-en";
-        this.decks = new Array(deckNumber);
+        this.decks = new Array(this.deckNumber);
 
-        for (var i = 0; i < deckNumber; i++) {
+        for (var i = 0; i < this.deckNumber; i++) {
             this.decks[i] = new Models.DeckModel();
         }
     }, {

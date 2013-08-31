@@ -16,13 +16,17 @@
     <AppXManifest Include="C:\Users\venel_000\Desktop\Telerik\ACADEMY\Win 8 JS Teamwork\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\bin\Debug\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2013-08-31T13:52:43.256</Modified>
+      <Modified>2013-08-31T15:27:10.517</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\venel_000\Desktop\Telerik\ACADEMY\Win 8 JS Teamwork\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\css\default.css">
       <PackagePath>css\default.css</PackagePath>
       <Modified>2013-08-31T10:49:32.576</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\venel_000\Desktop\Telerik\ACADEMY\Win 8 JS Teamwork\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\pages\create\create.css">
+      <PackagePath>pages\create\create.css</PackagePath>
+      <Modified>2013-08-31T15:20:49.642</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\venel_000\Desktop\Telerik\ACADEMY\Win 8 JS Teamwork\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\pages\home\home.css">
       <PackagePath>pages\home\home.css</PackagePath>
@@ -54,15 +58,15 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\venel_000\Desktop\Telerik\ACADEMY\Win 8 JS Teamwork\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\js\dataLayer.js">
       <PackagePath>js\dataLayer.js</PackagePath>
-      <Modified>2013-08-31T15:04:12.335</Modified>
+      <Modified>2013-08-31T16:13:17.250</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\venel_000\Desktop\Telerik\ACADEMY\Win 8 JS Teamwork\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\js\default.js">
       <PackagePath>js\default.js</PackagePath>
-      <Modified>2013-08-31T10:49:32.604</Modified>
+      <Modified>2013-08-31T16:25:06.588</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\venel_000\Desktop\Telerik\ACADEMY\Win 8 JS Teamwork\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\js\models.js">
       <PackagePath>js\models.js</PackagePath>
-      <Modified>2013-08-31T15:04:53.827</Modified>
+      <Modified>2013-08-31T15:43:47.473</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\venel_000\Desktop\Telerik\ACADEMY\Win 8 JS Teamwork\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\js\navigator.js">
       <PackagePath>js\navigator.js</PackagePath>
@@ -70,7 +74,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\venel_000\Desktop\Telerik\ACADEMY\Win 8 JS Teamwork\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\js\viewModels.js">
       <PackagePath>js\viewModels.js</PackagePath>
-      <Modified>2013-08-31T15:05:26.075</Modified>
+      <Modified>2013-08-31T16:14:06.227</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\venel_000\Desktop\Telerik\ACADEMY\Win 8 JS Teamwork\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\pages\create\create.js">
+      <PackagePath>pages\create\create.js</PackagePath>
+      <Modified>2013-08-31T15:45:28.956</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\venel_000\Desktop\Telerik\ACADEMY\Win 8 JS Teamwork\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\pages\home\home.js">
       <PackagePath>pages\home\home.js</PackagePath>
@@ -88,13 +96,17 @@
       <PackagePath>pages\set\setCodeBehind.js</PackagePath>
       <Modified>2013-08-31T15:05:46.086</Modified>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\venel_000\Desktop\Telerik\ACADEMY\Win 8 JS Teamwork\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\pages\create\create.html">
+      <PackagePath>pages\create\create.html</PackagePath>
+      <Modified>2013-08-31T15:41:27.599</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\venel_000\Desktop\Telerik\ACADEMY\Win 8 JS Teamwork\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\pages\home\home.html">
       <PackagePath>pages\home\home.html</PackagePath>
-      <Modified>2013-08-31T14:29:50.968</Modified>
+      <Modified>2013-08-31T15:48:05.329</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\venel_000\Desktop\Telerik\ACADEMY\Win 8 JS Teamwork\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\default.html">
       <PackagePath>default.html</PackagePath>
-      <Modified>2013-08-31T13:53:10.782</Modified>
+      <Modified>2013-08-31T15:18:08.259</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\venel_000\Desktop\Telerik\ACADEMY\Win 8 JS Teamwork\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\pages\set\set.html">
       <PackagePath>pages\set\set.html</PackagePath>
@@ -102,7 +114,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\venel_000\Desktop\Telerik\ACADEMY\Win 8 JS Teamwork\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\bin\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2013-08-31T13:52:42.910</Modified>
+      <Modified>2013-08-31T15:27:10.122</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

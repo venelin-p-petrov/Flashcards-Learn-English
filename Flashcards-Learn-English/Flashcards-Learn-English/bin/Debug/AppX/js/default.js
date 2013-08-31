@@ -30,6 +30,30 @@
                     return nav.navigate(Application.navigator.home);
                 }
             }));
+
+            var appBar = document.getElementById("appbar").winControl;
+            var createSetButton = WinJS.Utilities.id("create-set");
+            var deleteSetButton = WinJS.Utilities.id("delete-set");
+
+            createSetButton.listen("click", function (event) {
+                WinJS.Navigation.navigate("/pages/create/create.html", { type: "create" });
+                appBar.hide();
+            });
+
+            deleteSetButton.listen("click", function () {
+                var setListView = document.getElementById("set-list").winControl;
+
+                if (setListView) {
+                    setListView.selection.getItems().done(function (sets) {
+                        for (var i = sets.length - 1; i >= 0; i--) {
+                            console.log(sets[i].index);
+                            ViewModels.removeSet(sets[i].index);
+                        }
+
+                        ViewModels.loadSets();
+                    });
+                }
+            });
         }
     });
 

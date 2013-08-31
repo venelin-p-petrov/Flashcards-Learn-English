@@ -10,8 +10,13 @@
         sets.push(setModel);
     }
 
+    var removeSet = function (index) {
+        sets.splice(index, 1);
+    }
+
     WinJS.Namespace.define("Data", {
         getSets: getSets,
-        addSet: addSet
+        addSet: addSet,
+        removeSet: removeSet
     });
 })();
