@@ -160,7 +160,7 @@
         "bomb shelter"));
 
     var getAtHome = function () {
-        return animals;
+        return atHome;
     };
 
     var atSchool = new Models.SetModel("В училище", "/images/atSchool.jpg");
@@ -196,6 +196,10 @@
     var getAtSchool = function () {
         return atSchool;
     };
+
+    WinJS.Utilities.markSupportedForProcessing(getAnimals);
+    WinJS.Utilities.markSupportedForProcessing(getAtHome);
+    WinJS.Utilities.markSupportedForProcessing(getAtSchool);
 
     WinJS.Namespace.define("Data", {
         Animals: getAnimals,

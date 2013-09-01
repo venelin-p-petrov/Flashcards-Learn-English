@@ -1,7 +1,12 @@
-﻿/// <reference path="//Microsoft.WinJS.1.0/js/base.js" />
+﻿/// <reference path="data.js" />
+/// <reference path="//Microsoft.WinJS.1.0/js/base.js" />
 (function () {
-    var sets = new Array(new Models.SetModel("new", 3));
-    var cards = new Array(new Models.CardModel("Куче", "Dog"));
+    var sets = new Array(Data.Animals(), Data.AtHome(), Data.AtSchool());
+    var cards = new Array();
+
+    for (var i = 0; i < sets.length; i++) {
+        sets[i].updateCurrentDeck();
+    }
 
     var getSets = function () {
         return sets;
@@ -21,6 +26,7 @@
 
     var addSet = function (setModel) {
         sets.push(setModel);
+        sets[sets.length - 1].updateCurrentDeck();
     }
 
     var addCard = function (cardModel) {

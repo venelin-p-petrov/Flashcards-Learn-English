@@ -21,13 +21,17 @@
             </h1>
         </header>
         <section aria-label="Main content" role="main">
-            <div>
-                <div id="current-front" data-win-bind="innerText: currentDeck.first.bgWord"></div>
-                <div id="current-back">
-                    <p data-win-bind="innerText: currentDeck.first.enWord"></p>
-                    <p data-win-bind="innerText: currentDeck.first.enPronunciation"></p>
-                    <p data-win-bind="innerText: currnetDeck.first.enPartOfSpeech"></p>
-                    <p data-win-bind="innerText: currnetDeck.first.enDefinition"></p>
+            <div id="current-card-container">
+                <div id="current-card">
+                    <div id="current-front" data-win-bind="innerText: currentDeck.first.bgWord"></div>
+                    <div id="current-back">
+                        <p data-win-bind="innerText: getCurrentCard.enWord"></p>
+                        <p data-win-bind="innerText: getCurrentCard.enPronunciation"></p>
+                        <p data-win-bind="innerText: getCurrentCard.enPartOfSpeech"></p>
+                        <p data-win-bind="innerText: getCurrentCard.enDefinition"></p>
+                        <button id="current-correct">Yes</button>
+                        <button id="current-incorrect">No</button>
+                    </div>
                 </div>
             </div>
         </section>

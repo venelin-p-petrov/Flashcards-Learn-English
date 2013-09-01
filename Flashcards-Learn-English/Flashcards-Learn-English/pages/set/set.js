@@ -13,6 +13,35 @@
         },
         ready: function (element, options) {
             WinJS.Binding.processAll(element, ViewModels.sets.getAt(options.setId));
+
+            var correctButton = document.getElementById("current-correct");
+            var incorrectButton = document.getElementById("current-incorrect");
+
+            correctButton.addEventListener("click", function () {
+                var set = Data.getSets()[options.setId];
+                var card = set.getCurrentCard;
+                var deck = set.decks[card.deckId];
+                deck.removeCard(deck.cards.indexOf(card));
+                if (set.decks.length > card.deckId) {
+                    set.decks[card.deckId + 1].addCard(card);
+                } else {
+                    set.decks[card.deckId].addCard(card);
+                }
+
+                set.updateCurrentDeck();
+                WinJS.Binding.processAll(element, ViewModels.sets.getAt(options.setId));
+            });
+
+            incorrectButton.addEventListener("click", function () {
+                var set = Data.getSets()[options.setId];
+                var card = set.getCurrentCard;
+                var deck = set.decks[card.deckId];
+                deck.removeCard(deck.cards.indexOf(card));
+                set.decks[0].addCard(card);
+
+                set.updateCurrentDeck();
+                WinJS.Binding.processAll(element, ViewModels.sets.getAt(options.setId));
+            });
         },
 
         unload: function () {

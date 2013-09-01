@@ -1,4 +1,45 @@
-﻿.set section[role=main] {
+﻿/*#current-card-container {
+    perspective: 1000;
+}
+
+    #current-card-container:hover #current-card {
+        transform: rotateY(180deg);
+    }
+
+    #current-card-container:hover #current-card .current-back {
+        z-index: 20;
+    }
+
+#current-card-container, #current-front, #current-back {
+    width: 300px;
+    height: 500px;
+}
+
+#current-card {
+    transition: 0.6s;
+    transform-style: preserve-3d;
+    position: relative;
+}
+
+#current-front, #current-back {
+    backface-visibility: visible;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#current-front {
+    z-index: 2;
+    background-color: yellow;
+}
+
+#current-back {
+    z-index: 1;
+    transform: rotateY(180deg);
+    background-color: green;
+}*/
+
+.set section[role=main] {
     margin-left: 120px;
     margin-right: 120px;
 }
