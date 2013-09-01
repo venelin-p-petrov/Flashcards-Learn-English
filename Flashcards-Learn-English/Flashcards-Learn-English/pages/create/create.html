@@ -5,7 +5,7 @@
     <title>create</title>
 
     <!-- WinJS references -->
-    <link href="//Microsoft.WinJS.1.0/css/ui-dark.css" rel="stylesheet" />
+    <link href="//Microsoft.WinJS.1.0/css/ui-light.css" rel="stylesheet" />
     <script src="//Microsoft.WinJS.1.0/js/base.js"></script>
     <script src="//Microsoft.WinJS.1.0/js/ui.js"></script>
 
@@ -14,6 +14,12 @@
 </head>
 <body>
     <div class="create fragment">
+        <div id="card-template" data-win-control="WinJS.Binding.Template">
+            <div>
+                <div data-win-bind="innerText: bgWord"></div>
+            </div>
+        </div>
+
         <header aria-label="Header content" role="banner">
             <button class="win-backbutton" aria-label="Back" disabled type="button"></button>
             <h1 class="titlearea win-type-ellipsis">
@@ -22,11 +28,33 @@
         </header>
         <section aria-label="Main content" role="main">
             <div>
-                <label>Set Title</label>
+                <label>Име на тесте</label>
                 <input id="set-title" />
-                <label>Image</label>
+                <label>Икона</label>
                 <button>Browse</button>
-                <button id="create-set-button">Create</button>
+                <button id="create-set-button">Създай</button>
+            </div>
+            <div>
+                <div id="card-list" data-win-control="WinJS.UI.ListView" data-win-options="{
+                        itemDataSource: ViewModels.cards.dataSource,
+                        itemTemplate: select('#card-template'),
+                        selectionMode: 'none'
+                    }">
+                </div>
+            </div>
+            <div>
+                <label for="bg-word-input">Българска дума</label>
+                <input id="bg-word-input" />
+                <label for="en-word-input">Английска дума</label>
+                <input id="en-word-input" />
+                <label for="pronunciation">Произношение</label>
+                <input id="pronunciation" disabled="disabled" />
+                <label for="part-of-speech-input">Част на речта</label>
+                <input id="part-of-speech-input" />
+                <label for="en-definition-input">Английска дефиниция</label>
+                <input id="en-definition-input" />
+                <button id="generate-word">Генерирай съдържание</button>
+                <button id="add-card">Добави карта</button>
             </div>
         </section>
     </div>

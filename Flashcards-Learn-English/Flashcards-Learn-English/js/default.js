@@ -45,12 +45,29 @@
 
                 if (setListView) {
                     setListView.selection.getItems().done(function (sets) {
-                        for (var i = sets.length - 1; i >= 0; i--) {
-                            console.log(sets[i].index);
-                            ViewModels.removeSet(sets[i].index);
-                        }
+                        if (sets.length > 0) {
+                            var msg = new Windows.UI.Popups.MessageDialog(
+                                "Сигурни ли сте, че искате да изтриете тези тестета.");
 
-                        ViewModels.loadSets();
+                            msg.commands.append(new Windows.UI.Popups.UICommand(
+                                "Да", function () {
+                                    for (var i = sets.length - 1; i >= 0; i--) {
+                                        console.log(sets[i].index);
+                                        ViewModels.removeSet(sets[i].index);
+                                    }
+
+                                    ViewModels.loadSets();
+                                }));
+                            msg.commands.append(new Windows.UI.Popups.UICommand(
+                                "Не", function () {
+
+                                }));
+
+                            msg.defaultCommandIndex = 0;
+                            msg.cancelCommandIndex = 1;
+
+                            msg.showAsync();
+                        }
                     });
                 }
             });

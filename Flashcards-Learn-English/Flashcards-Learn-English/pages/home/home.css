@@ -1,4 +1,14 @@
-﻿.homepage section[role=main] {
+﻿#set-list .win-item {
+    padding: 5px;
+    background-color: #fff42d;
+    text-align: center;
+}
+
+#set-list .win-item div {
+    word-break: break-all;
+}
+
+.homepage section[role=main] {
     margin-left: 120px;
     margin-right: 120px;
 }

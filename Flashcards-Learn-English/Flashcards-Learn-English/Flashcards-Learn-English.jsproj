@@ -70,6 +70,7 @@
     <Content Include="pages\create\create.css" />
     <Content Include="pages\create\create.html" />
     <Content Include="pages\create\create.js" />
+    <Content Include="pages\create\createCodeBehind.js" />
     <Content Include="pages\home\home.css" />
     <Content Include="pages\home\home.html" />
     <Content Include="pages\home\home.js" />

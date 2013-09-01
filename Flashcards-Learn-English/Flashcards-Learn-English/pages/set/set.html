@@ -5,7 +5,7 @@
     <title>set</title>
 
     <!-- WinJS references -->
-    <link href="//Microsoft.WinJS.1.0/css/ui-dark.css" rel="stylesheet" />
+    <link href="//Microsoft.WinJS.1.0/css/ui-light.css" rel="stylesheet" />
     <script src="//Microsoft.WinJS.1.0/js/base.js"></script>
     <script src="//Microsoft.WinJS.1.0/js/ui.js"></script>
 
@@ -22,7 +22,13 @@
         </header>
         <section aria-label="Main content" role="main">
             <div>
-                <div id="current-back" data-win-bind="innerText: currentDeck.first.enWord"></div>
+                <div id="current-front" data-win-bind="innerText: currentDeck.first.bgWord"></div>
+                <div id="current-back">
+                    <p data-win-bind="innerText: currentDeck.first.enWord"></p>
+                    <p data-win-bind="innerText: currentDeck.first.enPronunciation"></p>
+                    <p data-win-bind="innerText: currnetDeck.first.enPartOfSpeech"></p>
+                    <p data-win-bind="innerText: currnetDeck.first.enDefinition"></p>
+                </div>
             </div>
         </section>
     </div>
