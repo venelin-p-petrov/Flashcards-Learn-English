@@ -1,1 +1,1 @@
-C:\Users\venel_000\Desktop\Telerik\ACADEMY\Win 8 JS Teamwork\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English.jsproj;neutral
+D:\Telerik Academy\win8-js\WinStoreProject\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English\Flashcards-Learn-English.jsproj;neutral
