@@ -12,15 +12,7 @@
         return sets;
     }
 
-    var getCards = function (setId) {
-        //var cards = new Array();
-        //var set = sets[setId];
-        //for (var i = 0; i < set.decks.length; i++) {
-        //    for (var j = 0; j < set.decks[i].cards.length; j++) {
-        //        cards.push(set.decks[i].cards[j]);
-        //    }
-        //}
-
+    var getCards = function () {
         return cards;
     }
 

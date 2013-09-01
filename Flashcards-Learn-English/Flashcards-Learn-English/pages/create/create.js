@@ -21,11 +21,27 @@
             }
             WinJS.Binding.processAll(element, { title: title });
 
+            var addCardButton = document.getElementById("add-card");
             var createSetButton = document.getElementById("create-set-button");
+
+            addCardButton.addEventListener("click", function () {
+                var bgWord = document.getElementById("bg-word-input").value;
+                var enWord = document.getElementById("en-word-input").value;
+                var pronunciation = document.getElementById("pronunciation-input").value;
+                var partOfSpeech = document.getElementById("part-of-speech-input").value;
+                var enDefinition = document.getElementById("en-definition-input").value;
+
+                ViewModels.addCard(bgWord, enWord, enDefinition, partOfSpeech, pronunciation);
+                ViewModels.loadCards();
+            });
 
             createSetButton.addEventListener("click", function () {
                 var title = document.getElementById("set-title").value;
-                ViewModels.addSet(title);
+                var index = ViewModels.addSet(title);
+                var cards = Data.getCards();
+                for (var i = 0; i < cards.length; i++) {
+                    Data.getSets()[index].decks[0].cards.push(cards[i]);
+                }
                 WinJS.Navigation.navigate("/pages/home/home.html");
             });
         },

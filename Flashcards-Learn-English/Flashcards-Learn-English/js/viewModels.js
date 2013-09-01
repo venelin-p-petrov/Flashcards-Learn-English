@@ -34,9 +34,14 @@
         cards: cardList,
         addSet: function (title, iconUrl) {
             Data.addSet(new Models.SetModel(title, iconUrl));
+            return Data.getSets().length - 1;
         },
         removeSet: function (index) {
             Data.removeSet(index);
+        },
+        addCard: function (bgWord, enWord, enDefinition, enPartOfSpeech, enPronunciation) {
+            Data.addCard(new Models.CardModel(bgWord, enWord, enDefinition, enPartOfSpeech, enPronunciation));
+            return Data.getCards().length - 1;
         }
     });
 })();
