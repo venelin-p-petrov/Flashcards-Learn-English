@@ -1,8 +1,12 @@
 ﻿/// <reference path="//Microsoft.WinJS.1.0/js/base.js" />
 (function () {
 
+    var localFolder = Windows.Storage.ApplicationData.current.localFolder;
+
     var updateCurrentDeck = function (set) {
-        set.currentSession++;
+        if (set.currentDeck.cards.length == 0) {
+            set.currentSession++;
+        }
         for (var i = 0; i < set.decks.length; i++) {
             if (set.currentSession % (i + 1) == 0) {
                 while (set.decks[i].cards.length > 0) {
@@ -54,10 +58,32 @@
         return false;
     }
 
+    var saveSetToLocalData = function (set) {
+        localFolder.createFolderAsync("Saved Sets",
+            Windows.Storage.CreationCollisionOption.openIfExists).done(function (folder) {
+                folder.createFileAsync(set.title.toString() + ".flset",
+                    Windows.Storage.CreationCollisionOption.replaceExisting).done(function (file) {
+                        Windows.Storage.FileIO.writeTextAsync(file, JSON.stringify(set));
+                    });
+            });
+    }
+
+    var loadSetsFromLocalDataAsync = function () {
+        return new WinJS.Promise(function (complete, error) {
+            localFolder.getFolderAsync("Saved Sets").done(function (savedSetsFolder) {
+                savedSetsFolder.getFilesAsync().done(function (files) {
+                    complete(files);
+                });
+            });
+        });
+    }
+
     WinJS.Namespace.define("Logic", {
         addCardToDeck: addCardToDeck,
         removeCardFromDeck: removeCardFromDeck,
         updateCurrentDeck: updateCurrentDeck,
-        hasCards: hasCards
+        hasCards: hasCards,
+        saveSet: saveSetToLocalData,
+        loadSetsAsync: loadSetsFromLocalDataAsync
     });
 })();

@@ -1,12 +1,9 @@
 ﻿/// <reference path="data.js" />
 /// <reference path="//Microsoft.WinJS.1.0/js/base.js" />
 (function () {
-    var sets = new Array(Data.Animals());
+    var sets = new Array();
     var cards = new Array();
-
-    for (var i = 0; i < sets.length; i++) {
-        Logic.updateCurrentDeck(sets[i]);
-    }
+    var newCards = new Array();
 
     var getSets = function () {
         return sets;
@@ -17,22 +14,54 @@
     }
 
     var getCards = function (setId) {
-        if (setId) {
+        if (!isNaN(setId)) {
+            Data.emptyCards();
             var set = sets[setId];
-            var cardsFromSet = new Array();
             for (var i = 0; i < set.decks.length; i++) {
                 for (var j = 0; j < set.decks[i].cards.length; j++) {
-                    cardsFromSet.push(set.decks[i].cards[j]);
+                    cards.push(set.decks[i].cards[j]);
                 }
             }
+            for (var i = 0; i < set.currentDeck.cards.length; i++) {
+                cards.push(set.currentDeck.cards[i]);
+            }
 
-            return cardsFromSet;
+            for (var i = 0; i < newCards.length; i++) {
+                cards.push(newCards[i]);
+            }
+
+            return cards;
         }
-        return cards;
+
+        return newCards;
+    }
+
+    var emptyCards = function () {
+        cards = new Array();
+    }
+
+    var emptyNewCards = function () {
+        newCards = new Array();
     }
 
     var addCard = function (cardModel) {
+        newCards.push(cardModel);
         cards.push(cardModel);
+    }
+
+    var removeCard = function (setId, card) {
+        var set = sets[setId];
+        for (var i = 0; i < set.decks.length; i++) {
+            var ind = set.decks[i].cards.indexOf(card);
+            if (ind >= 0) {
+                Logic.removeCardFromDeck(set.decks[i], ind);
+            }
+        }
+
+        var indc = set.currentDeck.cards.indexOf(card);
+        if (indc >= 0) {
+            Logic.removeCardFromDeck(set.currentDeck, indc);
+        }
     }
 
     var getCurrentCard = function (id) {
@@ -81,7 +110,10 @@
         getSets: getSets,
         getSetById: getSetById,
         getCards: getCards,
+        emptyCards: emptyCards,
+        emptyNewCards: emptyNewCards,
         addCard: addCard,
+        removeCard: removeCard,
         getCurrentCard: getCurrentCard,
         addSet: addSet,
         removeSet: removeSet,

@@ -29,16 +29,18 @@
             <section aria-label="Main content" role="main">
                 <div>
                     <label>Име на тесте</label>
-                    <input id="set-title" />
+                    <input id="set-title" data-win-bind="value: setTitle" />
+                    <br />
                     <label>Икона</label>
-                    <button>Browse</button>
-                    <button id="create-set-button">Създай</button>
+                    <p id="set-icon" data-win-bind="innerText: iconUrl"></p>
+                    <button id="set-icon-browse">Browse</button>
+                    <button id="create-set-button">Запази</button>
                 </div>
                 <div>
                     <div id="card-list" data-win-control="WinJS.UI.ListView" data-win-options="{
                          itemDataSource: ViewModels.cards.dataSource,
                          itemTemplate: select('#card-template'),
-                         selectionMode: 'none'
+                         selectionMode: 'multi'
                          }">
                     </div>
                 </div>

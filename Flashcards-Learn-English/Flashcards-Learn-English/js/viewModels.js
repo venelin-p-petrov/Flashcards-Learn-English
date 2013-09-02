@@ -48,8 +48,14 @@
         sets: setList,
         loadCards: loadCards,
         cards: cardList,
-        getCards: function () {
-            return Data.getCards();
+        getCards: function (setId) {
+            return Data.getCards(setId);
+        },
+        emptyNewCards: function () {
+            Data.emptyNewCards();
+        },
+        getSetById: function (id) {
+            return Data.getSetById(id);
         },
         setCurrentCard: setCurrentCard,
         currentCard: currentCard,
@@ -63,11 +69,17 @@
             Data.addSet(set);
             return set;
         },
+        addSetObject: function(set){
+            Data.addSet(set);
+        },
         removeSet: function (index) {
             Data.removeSet(index);
         },
         addCard: function (bgWord, enWord, enDefinition, partOfSpeech, pronunciation) {
             Data.addCard(new Models.CardModel(bgWord, enWord, enDefinition, partOfSpeech, pronunciation));
+        },
+        removeCard: function (setId, card) {
+            Data.removeCard(setId, card);
         }
     });
 })();

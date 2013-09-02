@@ -19,35 +19,107 @@
             else if (options.type == "change") {
                 title = "Промени тестето"
             }
-            WinJS.Binding.processAll(element, { title: title });
+            if (!isNaN(options.setId)) {
+                var set = ViewModels.getSetById(options.setId);
+                WinJS.Binding.processAll(element, { title: title, setTitle: set.title, iconUrl: set.iconUrl });
+            }
+            else {
+                WinJS.Binding.processAll(element, { title: title, setTitle: "", iconUrl: "" });
+            }
 
+            var appBar = document.getElementById("appbar").winControl;
             var addCardButton = document.getElementById("add-card");
             var createSetButton = document.getElementById("create-set-button");
-
-            addCardButton.addEventListener("click", function () {
-                var bgWord = document.getElementById("bg-word-input").value;
-                var enWord = document.getElementById("en-word-input").value;
-                var pronunciation = document.getElementById("pronunciation-input").value;
-                var partOfSpeech = document.getElementById("part-of-speech-input").value;
-                var enDefinition = document.getElementById("en-definition-input").value;
-
-                ViewModels.addCard(bgWord, enWord, enDefinition, partOfSpeech, pronunciation);
-                ViewModels.loadCards();
-            });
-
-            createSetButton.addEventListener("click", function () {
-                var title = document.getElementById("set-title").value;
-                var set = ViewModels.addSet(title);
-                var cards = ViewModels.getCards();
-                for (var i = 0; i < cards.length; i++) {
-                    Logic.addCardToDeck(cards[i], set.decks[0]);
-                }
-                Logic.updateCurrentDeck(set);
-                WinJS.Navigation.navigate("/pages/home/home.html");
-            });
-
             var generateWordButton = document.getElementById("generate-word");
-            generateWordButton.addEventListener("click", function () {
+            var cardList = document.getElementById("card-list").winControl;
+            var deleteCardsButton = document.getElementById("delete-card");
+
+            cardList.addEventListener("selectionchanged", function () {
+                var cardSelectionCommands = document.querySelectorAll(".cardSelection");
+
+                if (cardList.selection.count() > 0) {
+                    appBar.disabled = false;
+                    appBar.showOnlyCommands(cardSelectionCommands);
+
+                    appBar.sticky = true;
+                    if (appBar.hidden) {
+                        appBar.show();
+                    }
+                }
+                else if (cardList.selection.count() == 0) {
+                    appBar.hideCommands(cardSelectionCommands);
+                    appBar.sticky = false;
+                    appBar.hide();
+                    appBar.disabled = true;
+                }
+            });
+
+            addCardButton.addEventListener("click", function (e) {
+                e.preventDefault();
+                var bgWordInput = document.getElementById("bg-word-input");
+                var enWordInput = document.getElementById("en-word-input");
+                var pronunciationInput = document.getElementById("pronunciation-input");
+                var partOfSpeechInput = document.getElementById("part-of-speech-input");
+                var enDefinitionInput = document.getElementById("en-definition-input");
+
+                ViewModels.addCard(
+                    bgWordInput.value,
+                    enWordInput.value,
+                    enDefinitionInput.value,
+                    partOfSpeechInput.value,
+                    pronunciationInput.value);
+                ViewModels.loadCards(options.setId);
+
+                bgWordInput.value = "";
+                enWordInput.value = "";
+                pronunciationInput.value = "";
+                partOfSpeechInput.value = "";
+                enDefinitionInput.value = "";
+            });
+
+            createSetButton.addEventListener("click", function (e) {
+                e.preventDefault();
+                var title = document.getElementById("set-title").value;
+                var iconUrl = document.getElementById("set-icon").innerText;
+                var set = null;
+                var cards = [];
+                if (options.type == "create") {
+                    set = ViewModels.addSet(title, iconUrl);
+                    set.lastModified = Date.now();
+                    cards = ViewModels.getCards();
+                    ViewModels.emptyNewCards();
+                    for (var i = 0; i < cards.length; i++) {
+                        Logic.addCardToDeck(cards[i], set.decks[cards[i].deckId]);
+                    }
+
+                    ViewModels.loadCards();
+                }
+                else if (options.type == "change") {
+                    set = ViewModels.getSetById(options.setId);
+                    set.title = title;
+                    set.iconUrl = iconUrl;
+                    set.lastModified = Date.now();
+                    cards = ViewModels.getCards(options.setId)
+
+                    for (var i = 0; i < set.decks.length; i++) {
+                        set.decks[i].cards = new Array();
+                    }
+                    set.currentDeck.cards = new Array();
+
+                    for (var i = 0; i < cards.length; i++) {
+                        Logic.addCardToDeck(cards[i], set.decks[cards[i].deckId]);
+                    }
+                    ViewModels.emptyNewCards();
+                    ViewModels.loadCards(options.setId);
+                }
+                
+                Logic.updateCurrentDeck(set);
+                Logic.saveSet(set);
+                WinJS.Navigation.back();
+            });
+
+            generateWordButton.addEventListener("click", function (e) {
+                e.preventDefault();
                 var englishWordElement = document.getElementById("en-word-input");
                 var englishWord = englishWordElement.value;
                 if (englishWord) {
@@ -93,6 +165,37 @@
                         });
                     });
                 }
+            });
+
+            deleteCardsButton.addEventListener("click", function (e) {
+                e.preventDefault();
+                var cardList = document.getElementById("card-list").winControl;
+
+                cardList.selection.getItems().done(function (cards) {
+                    if (cards.length > 0) {
+                        var msg = new Windows.UI.Popups.MessageDialog(
+                            "Сигурни ли сте, че искате да изтриете.");
+
+                        msg.commands.append(new Windows.UI.Popups.UICommand(
+                            "Да", function () {
+                                for (var i = cards.length - 1; i >= 0; i--) {
+                                    ViewModels.removeCard(options.setId, cards[i].data);
+                                }
+                                ViewModels.loadCards(options.setId);
+                                
+
+                            }));
+                        msg.commands.append(new Windows.UI.Popups.UICommand(
+                            "Не", function () {
+
+                            }));
+
+                        msg.defaultCommandIndex = 0;
+                        msg.cancelCommandIndex = 1;
+
+                        msg.showAsync();
+                    }
+                });
             });
         },
 

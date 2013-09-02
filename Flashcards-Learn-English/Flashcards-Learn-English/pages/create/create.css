@@ -1,4 +1,8 @@
-﻿.create section[role=main] {
+﻿#card-list {
+    height: 200px;
+}
+
+.create section[role=main] {
     margin-left: 120px;
     margin-right: 120px;
 }

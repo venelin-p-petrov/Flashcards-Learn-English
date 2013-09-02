@@ -16,11 +16,20 @@
             WinJS.Binding.processAll(element, ViewModels.sets.getAt(options.setId));
             WinJS.Binding.processAll(document.getElementById("set-page"), ViewModels);
 
+            var appBar = document.getElementById("appbar").winControl;
+            var changeSetButton = WinJS.Utilities.id("change-set");
             var correctButton = document.getElementById("current-correct");
             var incorrectButton = document.getElementById("current-incorrect");
             var playPronounciationButton = document.getElementById("playPronounciation");
 
-            correctButton.addEventListener("click", function () {
+            changeSetButton.listen("click", function (e) {
+                e.preventDefault();
+                WinJS.Navigation.navigate("/pages/create/create.html", { type: "change", setId: options.setId });
+                appBar.hide();
+            });
+
+            correctButton.addEventListener("click", function (e) {
+                e.preventDefault();
                 var set = ViewModels.sets.getAt(options.setId);
                 var card = ViewModels.currentCard.card;
                 if (set.decks.length > card.deckId + 1) {
@@ -35,10 +44,13 @@
                     Logic.updateCurrentDeck(set);
                 }
                 
+                set.lastModified = Date.now();
+                Logic.saveSet(set);
                 SetCodeBehind.callUpdate(options.setId);
             });
 
-            incorrectButton.addEventListener("click", function () {
+            incorrectButton.addEventListener("click", function (e) {
+                e.preventDefault();
                 var set = ViewModels.sets.getAt(options.setId);
                 var card = ViewModels.currentCard.card;
                 card.deckId = 0;
@@ -49,11 +61,14 @@
                     Logic.updateCurrentDeck(set);
                 }
 
+                set.lastModified = Date.now();
+                Logic.saveSet(set);
                 SetCodeBehind.callUpdate(options.setId);
             });
 
             
-            playPronounciationButton.addEventListener("click", function () {
+            playPronounciationButton.addEventListener("click", function (e) {
+                e.preventDefault();
                 var englishWordElement = document.getElementById("englishWord");
                 var englishWord = englishWordElement.innerText.toLowerCase();
                 XMLRequests.GetEnPronounciationAudioUrl(englishWord).then(function (audioUrl) {

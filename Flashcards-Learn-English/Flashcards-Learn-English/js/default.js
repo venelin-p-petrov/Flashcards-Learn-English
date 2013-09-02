@@ -12,8 +12,16 @@
     app.addEventListener("activated", function (args) {
         if (args.detail.kind === activation.ActivationKind.launch) {
             if (args.detail.previousExecutionState !== activation.ApplicationExecutionState.terminated) {
-                // TODO: This application has been newly launched. Initialize
-                // your application here.
+                
+                Logic.loadSetsAsync().then(function (files) {
+                    files.forEach(function (file) {
+                        Windows.Storage.FileIO.readTextAsync(file).then(function (text) {
+                            ViewModels.addSetObject(JSON.parse(text));
+                            ViewModels.loadSets();
+                        });
+                    });
+                });
+
             } else {
                 // TODO: This application has been reactivated from suspension.
                 // Restore application state here.
@@ -37,7 +45,7 @@
                 switch (nav.location) {
                     case "/pages/home/home.html":
                         appBar.disabled = false;
-                        appBar.showCommands(["create-set", "import-set", "export-set"]);
+                        appBar.showCommands(["create-set", "import-set"]);
                         appBar.hideCommands(["change-set"]);
                         break;
                     case "/pages/set/set.html":
@@ -58,6 +66,8 @@
         // complete an asynchronous operation before your application is 
         // suspended, call args.setPromise().
         app.sessionState.history = nav.history;
+
+
     };
 
     app.start();

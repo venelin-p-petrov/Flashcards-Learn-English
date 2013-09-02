@@ -6,6 +6,7 @@
         this.currentDeck = new Models.DeckModel();
         this.currentSession = 1;
         this.decks = new Array(new Models.DeckModel(0), new Models.DeckModel(1), new Models.DeckModel(2));
+        this.lastModified = null;
     }, {
         title: "",
         iconUrl: "",

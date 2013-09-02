@@ -28,7 +28,8 @@
     <div id="appbar" data-win-control="WinJS.UI.AppBar">
         <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{
                 id:'create-set', 
-                label:'Създай тесте', 
+                label:'Създай тесте',
+                tooltip:'Създай ново тесте',
                 icon:'add',
                 section: 'global'
             }"
@@ -36,7 +37,8 @@
         </button>
         <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{
                 id:'delete-set', 
-                label:'Изтрий тесте/та', 
+                label:'Изтрий', 
+                tooltip:'Изтрий избраните тестета',
                 icon:'remove',
                 hidden:'true',
                 section: 'selection',
@@ -46,7 +48,8 @@
         </button>
         <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{
                 id:'change-set', 
-                label:'Промени тестето', 
+                label:'Промени', 
+                tooltip:'Промени съдържанието на тестето',
                 icon:'edit',
                 hidden:'true',
                 section: 'selection'
@@ -56,6 +59,7 @@
         <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{
                 id:'import-set', 
                 label:'Зареди тесте', 
+                tooltip:'Добави ново тесте от файл',
                 icon:'openfile',
                 section: 'global'
             }"
@@ -63,9 +67,22 @@
         </button>
         <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{
                 id:'export-set', 
-                label:'Запази тестето', 
+                label:'Запази', 
+                tooltip:'Запази тестето във файл',
                 icon:'save',
-                section: 'global'
+                hidden:'true',
+                section: 'selection'
+            }"
+            type="button">
+        </button>
+        <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{
+                id:'delete-card', 
+                label:'Изтрий', 
+                tooltip:'Изтрий избраните карти',
+                icon:'remove',
+                hidden:'true',
+                section: 'selection',
+                extraClass:'cardSelection'
             }"
             type="button">
         </button>
