@@ -19,6 +19,9 @@
         <DefaultTile ShowName="allLogos" ShortName="Научи́ Aнглийски" />
         <SplashScreen Image="images\splashscreen.png" BackgroundColor="#FFFFFF" />
       </VisualElements>
+      <Extensions>
+        <Extension Category="windows.search" />
+      </Extensions>
     </Application>
   </Applications>
   <Capabilities>

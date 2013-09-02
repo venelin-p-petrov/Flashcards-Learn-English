@@ -42,6 +42,22 @@
             cardList.push(cardDTOs[i]);
         }
     }
+    var searchQuery = WinJS.Binding.as({ title: "" });
+
+    var filteredSets = setList.createFiltered(function (item) {
+        var queryIndexInItemString =
+        JSON.stringify(item).toLowerCase().indexOf(searchQuery.title.toLowerCase());
+
+        var isSelected = queryIndexInItemString > -1 &&
+                         item.title.toLowerCase() == searchQuery.title.toLowerCase();
+
+        return isSelected;
+    });
+
+    var changeSearchQuery = function (text) {
+        searchQuery.title = text;
+        setList.notifyReload();
+    }
 
     WinJS.Namespace.define("ViewModels", {
         loadSets: loadSets,
@@ -80,6 +96,9 @@
         },
         removeCard: function (setId, card) {
             Data.removeCard(setId, card);
-        }
+        },
+        searchSets: filteredSets,
+        submitSearchText: changeSearchQuery,
+        searchQuery: searchQuery
     });
 })();
