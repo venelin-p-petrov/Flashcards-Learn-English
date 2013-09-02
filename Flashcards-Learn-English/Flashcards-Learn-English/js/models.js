@@ -10,7 +10,7 @@
         title: "",
         iconUrl: "",
         currentDeck: {},
-        currentSession: 1,
+        currentSession: 0,
         decks: {}
     });
 
