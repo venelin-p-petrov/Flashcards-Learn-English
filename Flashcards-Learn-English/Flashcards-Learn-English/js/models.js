@@ -35,6 +35,7 @@
         enDefinition: "",
         enPartOfSpeech: "",
         enPronunciation: "",
+        enPronunciationAudio:"",
         deckId: 0
     });
 

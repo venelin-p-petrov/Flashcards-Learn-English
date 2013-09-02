@@ -18,13 +18,15 @@
 
             var correctButton = document.getElementById("current-correct");
             var incorrectButton = document.getElementById("current-incorrect");
+            var playPronounciationButton = document.getElementById("playPronounciation");
 
             correctButton.addEventListener("click", function () {
                 var set = ViewModels.sets.getAt(options.setId);
                 var card = ViewModels.currentCard.card;
                 if (set.decks.length > card.deckId + 1) {
                     Logic.addCardToDeck(card, set.decks[card.deckId + 1]);
-                } else {
+                }
+                else {
                     Logic.addCardToDeck(card, set.decks[card.deckId]);
                 }
 
@@ -49,6 +51,26 @@
 
                 SetCodeBehind.callUpdate(options.setId);
             });
+
+            
+            playPronounciationButton.addEventListener("click", function () {
+                var englishWordElement = document.getElementById("englishWord");
+                var englishWord = englishWordElement.innerText.toLowerCase();
+                XMLRequests.GetEnPronounciationAudioUrl(englishWord).then(function (audioUrl) {
+                    var audtag = null;
+                    if (!audtag) {
+                        audtag = document.createElement('audio');
+                        audtag.setAttribute("id", "audtag");
+                        audtag.setAttribute("controls", "true");
+                        audtag.setAttribute("msAudioCategory", "backgroundcapablemedia");
+                        audtag.setAttribute("src", audioUrl);
+                        
+                        document.getElementById("enPronunciation").appendChild(audtag);
+                        audtag.load();
+                        audtag.play();
+                    }
+                });
+            });
         },
 
         unload: function () {
@@ -57,7 +79,6 @@
 
         updateLayout: function (element, viewState, lastViewState) {
             /// <param name="element" domElement="true" />
-
             // TODO: Respond to changes in viewState.
         }
     });

@@ -27,7 +27,7 @@
                 var jsonResult = JSON.parse(response.responseText);
                 complete(jsonResult[0]['text']);
             }, function (error) {
-                var errorPopup = new Windows.UI.Popups.MessageDialog("Error has occured while getting word deffinition");
+                var errorPopup = new Windows.UI.Popups.MessageDialog("Дефиницията не е достъпна");
                 errorPopup.showAsync();
             });
         });
@@ -49,7 +49,7 @@
                 var jsonResult = JSON.parse(response.responseText);
                 complete(jsonResult[0]['raw']);
             }, function (error) {
-                var errorPopup = new Windows.UI.Popups.MessageDialog("Error has occured while getting word pronounciation");
+                var errorPopup = new Windows.UI.Popups.MessageDialog("Произношението не е достъпно");
                 errorPopup.showAsync();
             });
         });
@@ -73,7 +73,7 @@
                 var jsonResult = JSON.parse(response.responseText);
                 complete(jsonResult[0]['partOfSpeech']);
             }, function (error) {
-                var errorPopup = new Windows.UI.Popups.MessageDialog("Error has occured while getting word deffinition");
+                var errorPopup = new Windows.UI.Popups.MessageDialog("Част на речта не е достъпна");
                 errorPopup.showAsync();
             });
         });
@@ -97,7 +97,7 @@
 
                 complete(phraseJSON['text']);
             }, function (error) {
-                var errorPopup = new Windows.UI.Popups.MessageDialog("Error has occured while getting bgWord");
+                var errorPopup = new Windows.UI.Popups.MessageDialog("Превода от български на английски език не е достъпен");
                 errorPopup.showAsync();
             });
         });
@@ -120,7 +120,29 @@
 
                 complete(phraseJSON['text']);
             }, function (error) {
-                var errorPopup = new Windows.UI.Popups.MessageDialog("Error has occured while getting enWord");
+                var errorPopup = new Windows.UI.Popups.MessageDialog("Превода от английски на български език не е достъпен");
+                errorPopup.showAsync();
+            });
+        });
+    }
+
+    var getEnPronounciationAudioUrl = function (word) {
+        var requestUrl = baseUrl + word + "/audio?";
+        requestUrl += "useCanonical=" + _useCanonical;
+        requestUrl += "&limit=" + _maxResults;
+        requestUrl += "&api_key=" + _api_key;
+
+        return new WinJS.Promise(function (complete, error) {
+            WinJS.xhr({
+                type: "GET",
+                url: requestUrl,
+                headers: { "Content-type": "Application/json" },
+                responseType: "json"
+            }).then(function (response) {
+                var jsonResult = JSON.parse(response.responseText);
+                complete(jsonResult[0]['fileUrl']);
+            }, function (error) {
+                var errorPopup = new Windows.UI.Popups.MessageDialog("Аудио записа на произношението не е достъпен");
                 errorPopup.showAsync();
             });
         });
@@ -131,6 +153,7 @@
         GetPronounciation: getPronounciation,
         GetEnTranslation: getEnTranslation,
         GetBGTranslation: getBGTranslation,
-        GetPartOfSpeech: getPartOfSpeech
+        GetPartOfSpeech: getPartOfSpeech,
+        GetEnPronounciationAudioUrl: getEnPronounciationAudioUrl
     });
 })();
