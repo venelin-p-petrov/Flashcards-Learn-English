@@ -45,6 +45,55 @@
                 Logic.updateCurrentDeck(set);
                 WinJS.Navigation.navigate("/pages/home/home.html");
             });
+
+            var generateWordButton = document.getElementById("generate-word");
+            generateWordButton.addEventListener("click", function () {
+                var englishWordElement = document.getElementById("en-word-input");
+                var englishWord = englishWordElement.value;
+                if (englishWord) {
+                    XMLRequests.GetBGTranslation(englishWord).then(function (wordBg) {
+                        var bgWordElement = document.getElementById("bg-word-input");
+                        bgWordElement.innerText = wordBg;
+                    });
+                    XMLRequests.GetDefinition(englishWord).then(function (definition) {
+                        var englishWordDefinitionElement = document.getElementById("en-definition-input");
+                        englishWordDefinitionElement.innerText = definition;
+                    });
+
+                    XMLRequests.GetPronounciation(englishWord).then(function (pronounciation) {
+                        var englishWordPronounciationElement = document.getElementById("pronunciation-input");
+                        englishWordPronounciationElement.innerText = pronounciation;
+                    });
+
+                    XMLRequests.GetPartOfSpeech(englishWord).then(function (partOfSpeech) {
+                        var partOfSpeechElement = document.getElementById("part-of-speech-input");
+                        partOfSpeechElement.innerText = partOfSpeech;
+                    });
+                }
+                else {
+                    var bgWordElement = document.getElementById("bg-word-input");
+                    var wordBG = bgWordElement.value;
+                    XMLRequests.GetEnTranslation(wordBG).then(function (englishWord) {
+                        var englishWordElement = document.getElementById("en-word-input");
+                        englishWordElement.innerText = englishWord;
+
+                        XMLRequests.GetDefinition(englishWord).then(function (definition) {
+                            var englishWordDefinitionElement = document.getElementById("en-definition-input");
+                            englishWordDefinitionElement.innerText = definition;
+                        });
+
+                        XMLRequests.GetPronounciation(englishWord).then(function (pronounciation) {
+                            var englishWordPronounciationElement = document.getElementById("pronunciation-input");
+                            englishWordPronounciationElement.innerText = pronounciation;
+                        });
+
+                        XMLRequests.GetPartOfSpeech(englishWord).then(function (partOfSpeech) {
+                            var partOfSpeechElement = document.getElementById("part-of-speech-input");
+                            partOfSpeechElement.innerText = partOfSpeech;
+                        });
+                    });
+                }
+            });
         },
 
         unload: function () {
@@ -53,7 +102,6 @@
 
         updateLayout: function (element, viewState, lastViewState) {
             /// <param name="element" domElement="true" />
-
             // TODO: Respond to changes in viewState.
         }
     });

@@ -15,8 +15,8 @@
   </Resources>
   <Applications>
     <Application Id="App" StartPage="default.html">
-      <VisualElements DisplayName="Flashcards-Learn-English" Logo="images\logo.png" SmallLogo="images\smalllogo.png" Description="Flashcards-Learn-English" ForegroundText="light" BackgroundColor="#376092">
-        <DefaultTile ShowName="allLogos" ShortName="Flashcards: Научи́ Aнгийски" />
+      <VisualElements DisplayName="Научи́ Aнглийски" Logo="images\logo.png" SmallLogo="images\smalllogo.png" Description="Flashcards: Научи́ Aнглийски" ForegroundText="light" BackgroundColor="#376092">
+        <DefaultTile ShowName="allLogos" ShortName="Научи́ Aнглийски" />
         <SplashScreen Image="images\splashscreen.png" BackgroundColor="#FFFFFF" />
       </VisualElements>
     </Application>

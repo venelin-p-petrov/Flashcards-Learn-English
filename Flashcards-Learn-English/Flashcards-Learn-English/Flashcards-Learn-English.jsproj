@@ -68,6 +68,7 @@
     <Content Include="js\models.js" />
     <Content Include="js\navigator.js" />
     <Content Include="js\viewModels.js" />
+    <Content Include="js\xmlHttpRequest.js" />
     <Content Include="pages\create\create.css" />
     <Content Include="pages\create\create.html" />
     <Content Include="pages\create\create.js" />
