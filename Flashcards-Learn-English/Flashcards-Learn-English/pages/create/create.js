@@ -37,11 +37,12 @@
 
             createSetButton.addEventListener("click", function () {
                 var title = document.getElementById("set-title").value;
-                var index = ViewModels.addSet(title);
-                var cards = Data.getCards();
+                var set = ViewModels.addSet(title);
+                var cards = ViewModels.getCards();
                 for (var i = 0; i < cards.length; i++) {
-                    Data.getSets()[index].decks[0].cards.push(cards[i]);
+                    Logic.addCardToDeck(cards[i], set.decks[0]);
                 }
+                Logic.updateCurrentDeck(set);
                 WinJS.Navigation.navigate("/pages/home/home.html");
             });
         },

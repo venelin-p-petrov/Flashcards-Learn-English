@@ -64,6 +64,7 @@
     <Content Include="js\data.js" />
     <Content Include="js\dataLayer.js" />
     <Content Include="js\default.js" />
+    <Content Include="js\logic.js" />
     <Content Include="js\models.js" />
     <Content Include="js\navigator.js" />
     <Content Include="js\viewModels.js" />
