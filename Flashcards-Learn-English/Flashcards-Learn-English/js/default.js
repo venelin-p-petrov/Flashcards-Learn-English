@@ -32,43 +32,21 @@
             }));
 
             var appBar = document.getElementById("appbar").winControl;
-            var createSetButton = WinJS.Utilities.id("create-set");
-            var deleteSetButton = WinJS.Utilities.id("delete-set");
 
-            createSetButton.listen("click", function (event) {
-                WinJS.Navigation.navigate("/pages/create/create.html", { type: "create" });
-                appBar.hide();
-            });
-
-            deleteSetButton.listen("click", function () {
-                var setListView = document.getElementById("set-list").winControl;
-
-                if (setListView) {
-                    setListView.selection.getItems().done(function (sets) {
-                        if (sets.length > 0) {
-                            var msg = new Windows.UI.Popups.MessageDialog(
-                                "Сигурни ли сте, че искате да изтриете тези тестета.");
-
-                            msg.commands.append(new Windows.UI.Popups.UICommand(
-                                "Да", function () {
-                                    for (var i = sets.length - 1; i >= 0; i--) {
-                                        console.log(sets[i].index);
-                                        ViewModels.removeSet(sets[i].index);
-                                    }
-
-                                    ViewModels.loadSets();
-                                }));
-                            msg.commands.append(new Windows.UI.Popups.UICommand(
-                                "Не", function () {
-
-                                }));
-
-                            msg.defaultCommandIndex = 0;
-                            msg.cancelCommandIndex = 1;
-
-                            msg.showAsync();
-                        }
-                    });
+            nav.addEventListener("navigated", function () {
+                switch (nav.location) {
+                    case "/pages/home/home.html":
+                        appBar.disabled = false;
+                        appBar.showCommands(["create-set", "import-set", "export-set"]);
+                        appBar.hideCommands(["change-set"]);
+                        break;
+                    case "/pages/set/set.html":
+                        appBar.disabled = false;
+                        appBar.showOnlyCommands(["change-set"]);
+                        break;
+                    case "/pages/create/create.html":
+                        appBar.disabled = true;
+                        break;
                 }
             });
         }

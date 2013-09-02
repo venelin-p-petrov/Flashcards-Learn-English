@@ -12,7 +12,7 @@
         }
         set.currentDeck.cards = shuffle(set.currentDeck.cards);
 
-        if (set.currentDeck.cards.length == 0) {
+        if (set.currentDeck.cards.length == 0 && Logic.hasCards(set)) {
             Logic.updateCurrentDeck(set);
         }
     }
@@ -45,9 +45,19 @@
         return array;
     }
 
+    var hasCards = function (set) {
+        for (var i = 0; i < set.decks.length; i++) {
+            if (set.decks[i].cards.length > 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     WinJS.Namespace.define("Logic", {
         addCardToDeck: addCardToDeck,
         removeCardFromDeck: removeCardFromDeck,
-        updateCurrentDeck: updateCurrentDeck
+        updateCurrentDeck: updateCurrentDeck,
+        hasCards: hasCards
     });
 })();

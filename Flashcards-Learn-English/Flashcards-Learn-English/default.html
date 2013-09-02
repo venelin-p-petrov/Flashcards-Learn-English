@@ -29,14 +29,43 @@
         <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{
                 id:'create-set', 
                 label:'Създай тесте', 
-                icon:'add'
+                icon:'add',
+                section: 'global'
             }"
             type="button">
         </button>
         <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{
                 id:'delete-set', 
-                label:'Изтрий тестета', 
-                icon:'remove'
+                label:'Изтрий тесте/та', 
+                icon:'remove',
+                hidden:'true',
+                section: 'selection',
+                extraClass:'setSelection'
+            }"
+            type="button">
+        </button>
+        <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{
+                id:'change-set', 
+                label:'Промени тестето', 
+                icon:'edit',
+                hidden:'true',
+                section: 'selection'
+            }"
+            type="button">
+        </button>
+        <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{
+                id:'import-set', 
+                label:'Зареди тесте', 
+                icon:'openfile',
+                section: 'global'
+            }"
+            type="button">
+        </button>
+        <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{
+                id:'export-set', 
+                label:'Запази тестето', 
+                icon:'save',
+                section: 'global'
             }"
             type="button">
         </button>
