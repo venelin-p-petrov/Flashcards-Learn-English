@@ -208,7 +208,7 @@
         #set-page #current-card #current-back div:nth-of-type(5) {
             display: -ms-grid;
             -ms-grid-columns: 1fr;
-            -ms-grid-rows: 1fr 50px 80px 50px 1fr;
+            -ms-grid-rows: 1fr 50px 160px 50px 1fr;
             -ms-grid-column: 2;
             -ms-grid-row: 1;
             -ms-grid-row-span: 4;
@@ -232,6 +232,36 @@
 
 #audtag {
     display: none;
+}
+
+#set-page #current-card #current-back #playPronounciation {
+    background: url("ms-appx:///images/sound.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    border: none;
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+}
+
+#current-correct {
+    background: url("ms-appx:///images/Action-ok-icon.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    border: none;
+    width: 75px;
+    height: 75px;
+    min-width: 75px;
+}
+
+#current-incorrect {
+    background: url("ms-appx:///images/Action-cancel-icon.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    border: none;
+    width: 75px;
+    height: 75px;
+    min-width: 75px;
 }
 
 .set section[role=main] {

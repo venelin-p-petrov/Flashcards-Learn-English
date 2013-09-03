@@ -59,7 +59,7 @@
         return false;
     }
 
-    var saveSetToLocalDataAsync = function (set) {
+    var saveSetAsync = function (set) {
         return new WinJS.Promise(function (complete, error) {
             appFolder = documentsLibrary.createFolderAsync("Flashcards-Learn-English",
             Windows.Storage.CreationCollisionOption.openIfExists).done(function (folder) {
@@ -74,7 +74,7 @@
         });
     }
 
-    var saveIconToLocalData = function (fileToSave) {
+    var saveIcon = function (fileToSave) {
         documentsLibrary.createFolderAsync("Flashcards-Learn-English",
              Windows.Storage.CreationCollisionOption.openIfExists).done(function (folder) {
                  folder.createFolderAsync("Icons",
@@ -84,7 +84,8 @@
         });
         
     }
-    var loadIconFromLocalDataAsync = function () {
+
+    var loadIconAsync = function () {
         return new WinJS.Promise(function (complete, error) {
             if (appFolder) {
                 appFolder.getFolderAsync("Icons").done(function (savedIconsFolder) {
@@ -107,7 +108,7 @@
         });
     }
 
-    var loadSetsFromLocalDataAsync = function () {
+    var loadSetsAsync = function () {
         return new WinJS.Promise(function (complete, error) {
             if (appFolder) {
                 appFolder.getFolderAsync("Saved Sets").done(function (savedSetsFolder) {
@@ -126,7 +127,6 @@
                     });
                 });
             }
-           
         });
     }
 
@@ -145,15 +145,38 @@
         });
     }
 
+    var deleteSetAsync = function (index) {
+        return new WinJS.Promise(function (complete, error) {
+            if (appFolder) {
+                appFolder.getFolderAsync("Saved Sets").done(function (savedSetsFolder) {
+                    savedSetsFolder.getFilesAsync().done(function (files) {
+                        complete(files);
+                    });
+                });
+            }
+            else {
+                appFolder = documentsLibrary.createFolderAsync("Flashcards-Learn-English",
+                Windows.Storage.CreationCollisionOption.openIfExists).done(function (folder) {
+                    folder.createFolderAsync("Saved Sets", Windows.Storage.CreationCollisionOption.openIfExists).done(function (savedSetsFolder) {
+                        savedSetsFolder.getFilesAsync().done(function (files) {
+                            complete(files);
+                        });
+                    });
+                });
+            }
+        });
+    }
+
     WinJS.Namespace.define("Logic", {
         addCardToDeck: addCardToDeck,
         removeCardFromDeck: removeCardFromDeck,
         updateCurrentDeck: updateCurrentDeck,
         hasCards: hasCards,
-        saveSet: saveSetToLocalDataAsync,
-        loadSetsAsync: loadSetsFromLocalDataAsync,
-        saveIconToLocalData: saveIconToLocalData,
+        saveSet: saveSetAsync,
+        loadSetsAsync: loadSetsAsync,
+        saveIconToLocalData: saveIcon,
         loadDefault: loadDefault,
-        loadIconFromLocalDataAsync: loadIconFromLocalDataAsync
+        loadIconFromLocalDataAsync: loadIconAsync,
+        deleteSet: deleteSetAsync
     });
 })();

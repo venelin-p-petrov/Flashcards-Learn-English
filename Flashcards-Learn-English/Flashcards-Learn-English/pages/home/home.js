@@ -72,7 +72,9 @@
                             msg.commands.append(new Windows.UI.Popups.UICommand(
                                 "Да", function () {
                                     for (var i = sets.length - 1; i >= 0; i--) {
-                                        ViewModels.removeSet(sets[i].index);
+                                        Logic.deleteSet(sets[i].index).then(function () {
+                                            ViewModels.removeSet(sets[i].index);
+                                        });
                                     }
 
                                     ViewModels.loadSets();

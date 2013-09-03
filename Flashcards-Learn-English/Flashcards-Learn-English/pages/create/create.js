@@ -141,7 +141,7 @@
                 
                 Logic.updateCurrentDeck(set);
                 Logic.saveSet(set);
-                WinJS.Navigation.back();
+                WinJS.Navigation.navigate("/pages/home/home.html");
             });
 
             generateWordButton.addEventListener("click", function (e) {
