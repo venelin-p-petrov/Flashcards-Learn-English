@@ -19,7 +19,7 @@
         below. -->
         <div class="itemtemplate" data-win-control="WinJS.Binding.Template">
 
-            <div class="item">
+            <div class="item" data-setId="" data-win-bind="">
                 <img class="item-image" src="#" data-win-bind="src: iconUrl" />
                 <div class="item-content">
                     <div data-win-bind="innerText: title" style="width: 120px;"></div>
@@ -48,7 +48,7 @@
                      selectionMode: 'none',
                      itemTemplate: select('.itemtemplate'),
                      itemDataSource: ViewModels.searchSets.dataSource,
-                     oniteminvoked: HomeCodeBehind.goToSetPage
+                     oniteminvoked: SearchResultsCodeBehind.goToSetPage
                      }">
                 </div>
             </section>

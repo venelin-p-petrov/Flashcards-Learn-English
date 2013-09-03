@@ -81,6 +81,7 @@
     <Content Include="pages\searchResults\searchResults.css" />
     <Content Include="pages\searchResults\searchResults.html" />
     <Content Include="pages\searchResults\searchResults.js" />
+    <Content Include="pages\searchResults\searchResultsCodeBehind.js" />
     <Content Include="pages\set\set.css" />
     <Content Include="pages\set\set.html" />
     <Content Include="pages\set\set.js" />
