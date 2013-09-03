@@ -24,11 +24,15 @@
                 headers: { "Content-type": "Application/json" },
                 responseType: "json"
             }).then(function (response) {
-                var jsonResult = JSON.parse(response.responseText);
-                complete(jsonResult[0]['text']);
+                try {
+                    var jsonResult = JSON.parse(response.responseText);
+                    complete(jsonResult[0]['text']);
+                }
+                catch (e) {
+                    complete("Дефиницията не е достъпна");
+                }
             }, function (error) {
-                var errorPopup = new Windows.UI.Popups.MessageDialog("Дефиницията не е достъпна");
-                errorPopup.showAsync();
+                complete("Дефиницията не е достъпна");
             });
         });
     }
@@ -46,11 +50,15 @@
                 headers: { "Content-type": "Application/json" },
                 responseType: "json"
             }).then(function (response) {
-                var jsonResult = JSON.parse(response.responseText);
-                complete(jsonResult[0]['raw']);
+                try {
+                    var jsonResult = JSON.parse(response.responseText);
+                    complete(jsonResult[0]['raw']);
+                }
+                catch (e) {
+                    complete("Произношението не е достъпно");
+                }
             }, function (error) {
-                var errorPopup = new Windows.UI.Popups.MessageDialog("Произношението не е достъпно");
-                errorPopup.showAsync();
+                complete("Произношението не е достъпно");
             });
         });
     }
@@ -70,11 +78,15 @@
                 headers: { "Content-type": "Application/json" },
                 responseType: "json"
             }).then(function (response) {
-                var jsonResult = JSON.parse(response.responseText);
-                complete(jsonResult[0]['partOfSpeech']);
+                try {
+                    var jsonResult = JSON.parse(response.responseText);
+                    complete(jsonResult[0]['partOfSpeech']);
+                }
+                catch (e) {
+                    complete("Част на речта не е достъпна");
+                }
             }, function (error) {
-                var errorPopup = new Windows.UI.Popups.MessageDialog("Част на речта не е достъпна");
-                errorPopup.showAsync();
+                complete("Част на речта не е достъпна");
             });
         });
     }
@@ -90,15 +102,19 @@
                 headers: { "Content-type": "Application/json" },
                 responseType: "json"
             }).then(function (response) {
-                var jsonResult = JSON.parse(response.responseText);
-                var tucJSON = jsonResult['tuc'];
-                var tucSubJSON = tucJSON[0];
-                var phraseJSON = tucSubJSON['phrase'];
+                try {
+                    var jsonResult = JSON.parse(response.responseText);
+                    var tucJSON = jsonResult['tuc'];
+                    var tucSubJSON = tucJSON[0];
+                    var phraseJSON = tucSubJSON['phrase'];
 
-                complete(phraseJSON['text']);
+                    complete(phraseJSON['text']);
+                }
+                catch (e) {
+                    complete("Превода от български на английски език не е достъпен");
+                }
             }, function (error) {
-                var errorPopup = new Windows.UI.Popups.MessageDialog("Превода от български на английски език не е достъпен");
-                errorPopup.showAsync();
+                complete("Превода от български на английски език не е достъпен");
             });
         });
     }
@@ -113,15 +129,19 @@
                 headers: { "Content-type": "Application/json" },
                 responseType: "json"
             }).then(function (response) {
-                var jsonResult = JSON.parse(response.responseText);
-                var tucJSON = jsonResult['tuc'];
-                var tucSubJSON = tucJSON[0];
-                var phraseJSON = tucSubJSON['phrase'];
+                try {
+                    var jsonResult = JSON.parse(response.responseText);
+                    var tucJSON = jsonResult['tuc'];
+                    var tucSubJSON = tucJSON[0];
+                    var phraseJSON = tucSubJSON['phrase'];
 
-                complete(phraseJSON['text']);
+                    complete(phraseJSON['text']);
+                }
+                catch (e) {
+                    complete("Превода от английски на български език не е достъпен");
+                }
             }, function (error) {
-                var errorPopup = new Windows.UI.Popups.MessageDialog("Превода от английски на български език не е достъпен");
-                errorPopup.showAsync();
+                complete("Превода от английски на български език не е достъпен");
             });
         });
     }
@@ -139,11 +159,15 @@
                 headers: { "Content-type": "Application/json" },
                 responseType: "json"
             }).then(function (response) {
-                var jsonResult = JSON.parse(response.responseText);
-                complete(jsonResult[0]['fileUrl']);
+                try {
+                    var jsonResult = JSON.parse(response.responseText);
+                    complete(jsonResult[0]['fileUrl']);
+                }
+                catch (e) {
+                    complete("Аудио записа на произношението не е достъпен");
+                }
             }, function (error) {
-                var errorPopup = new Windows.UI.Popups.MessageDialog("Аудио записа на произношението не е достъпен");
-                errorPopup.showAsync();
+                complete("Аудио записа на произношението не е достъпен");
             });
         });
     }

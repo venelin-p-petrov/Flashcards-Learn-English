@@ -45,6 +45,7 @@
     var searchQuery = WinJS.Binding.as({ title: "" });
 
     var filteredSets = setList.createFiltered(function (item) {
+
         var queryIndexInItemString =
         JSON.stringify(item).toLowerCase().indexOf(searchQuery.title.toLowerCase());
 
