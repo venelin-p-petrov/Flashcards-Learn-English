@@ -10,7 +10,7 @@
     var baseUrl = "http://api.wordnik.com/v4/word.json/";
 
     var getEnDeffinition = function (word) {
-        var requestUrl = baseUrl + word + "/definitions?";
+        var requestUrl = baseUrl + word.toLowerCase() + "/definitions?";
         requestUrl += "limit=" + _maxResults;
         requestUrl += "&includeRelated=" + _includeRelated;
         requestUrl += "&useCanonical=" + _useCanonical;
@@ -29,16 +29,16 @@
                     complete(jsonResult[0]['text']);
                 }
                 catch (e) {
-                    complete("Дефиницията не е достъпна");
+                    complete("не е достъпна");
                 }
             }, function (error) {
-                complete("Дефиницията не е достъпна");
+                complete("не е достъпна");
             });
         });
     }
 
     var getPronounciation = function (word) {
-        var requestUrl = baseUrl + word + "/pronunciations?";
+        var requestUrl = baseUrl + word.toLowerCase() + "/pronunciations?";
         requestUrl += "useCanonical=" + _useCanonical;
         requestUrl += "limit" + _maxResults;
         requestUrl += "&api_key=" + _api_key;
@@ -55,16 +55,16 @@
                     complete(jsonResult[0]['raw']);
                 }
                 catch (e) {
-                    complete("Произношението не е достъпно");
+                    complete("не е достъпно");
                 }
             }, function (error) {
-                complete("Произношението не е достъпно");
+                complete("не е достъпно");
             });
         });
     }
 
     var getPartOfSpeech = function (word) {
-        var requestUrl = baseUrl + word + "/definitions?";
+        var requestUrl = baseUrl + word.toLowerCase() + "/definitions?";
         requestUrl += "limit=" + _maxResults;
         requestUrl += "&includeRelated=" + _includeRelated;
         requestUrl += "&useCanonical=" + _useCanonical;
@@ -83,17 +83,17 @@
                     complete(jsonResult[0]['partOfSpeech']);
                 }
                 catch (e) {
-                    complete("Част на речта не е достъпна");
+                    complete("не е достъпна");
                 }
             }, function (error) {
-                complete("Част на речта не е достъпна");
+                complete("не е достъпна");
             });
         });
     }
 
     //Glosbe requests
     var getEnTranslation = function (wordBG) {
-        var requestUrl = "http://glosbe.com/gapi/translate?from=bul&dest=eng&format=json&phrase=" + encodeURIComponent(wordBG);
+        var requestUrl = "http://glosbe.com/gapi/translate?from=bul&dest=eng&format=json&phrase=" + encodeURIComponent(wordBG.toLowerCase());
 
         return new WinJS.Promise(function (complete, error) {
             WinJS.xhr({
@@ -111,16 +111,16 @@
                     complete(phraseJSON['text']);
                 }
                 catch (e) {
-                    complete("Превода от български на английски език не е достъпен");
+                    complete("не е достъпен");
                 }
             }, function (error) {
-                complete("Превода от български на английски език не е достъпен");
+                complete("не е достъпен");
             });
         });
     }
 
     var getBGTranslation = function (wordEn) {
-        var requestUrl = "http://glosbe.com/gapi/translate?from=eng&dest=bul&format=json&phrase=" + encodeURIComponent(wordEn);
+        var requestUrl = "http://glosbe.com/gapi/translate?from=eng&dest=bul&format=json&phrase=" + encodeURIComponent(wordEn.toLowerCase());
 
         return new WinJS.Promise(function (complete, error) {
             WinJS.xhr({
@@ -138,16 +138,16 @@
                     complete(phraseJSON['text']);
                 }
                 catch (e) {
-                    complete("Превода от английски на български език не е достъпен");
+                    complete("не е достъпен");
                 }
             }, function (error) {
-                complete("Превода от английски на български език не е достъпен");
+                complete("не е достъпен");
             });
         });
     }
 
     var getEnPronounciationAudioUrl = function (word) {
-        var requestUrl = baseUrl + word + "/audio?";
+        var requestUrl = baseUrl + word.toLowerCase() + "/audio?";
         requestUrl += "useCanonical=" + _useCanonical;
         requestUrl += "&limit=" + _maxResults;
         requestUrl += "&api_key=" + _api_key;
@@ -164,10 +164,10 @@
                     complete(jsonResult[0]['fileUrl']);
                 }
                 catch (e) {
-                    complete("Аудио записа на произношението не е достъпен");
+                    complete("не е достъпен");
                 }
             }, function (error) {
-                complete("Аудио записа на произношението не е достъпен");
+                complete("не е достъпен");
             });
         });
     }

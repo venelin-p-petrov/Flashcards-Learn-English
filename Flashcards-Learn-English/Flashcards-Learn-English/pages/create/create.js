@@ -77,10 +77,36 @@
                 enDefinitionInput.value = "";
             });
 
+            var setIconBrowseElement = document.getElementById("set-icon-browse");
+
+            setIconBrowseElement.addEventListener("click", function (e) {
+                e.preventDefault();
+                var openPicker = Windows.Storage.Pickers.FileOpenPicker();
+
+                openPicker.fileTypeFilter.replaceAll([".png", ".jpg", ".gif", ".jpeg"]);
+
+                openPicker.pickSingleFileAsync().then(function (fileToSave) {
+                    var iconUrlElement = document.getElementById("set-icon");
+                    
+                    Logic.saveIconToLocalData(fileToSave);
+                    Logic.loadIconFromLocalDataAsync().then(function (files) {
+                        files.forEach(function (loadedFile) {
+                            if (fileToSave.name==loadedFile.name) {
+                                iconUrlElement.innerText = URL.createObjectURL(loadedFile, { oneTimeOnly: false });
+                            }
+                        });
+                    });
+                });
+            });
+
             createSetButton.addEventListener("click", function (e) {
                 e.preventDefault();
                 var title = document.getElementById("set-title").value;
                 var iconUrl = document.getElementById("set-icon").innerText;
+                if (!iconUrl) {
+                    iconUrl = "/images/card-file-icon.png";
+                }
+                
                 var set = null;
                 var cards = [];
                 if (options.type == "create") {
@@ -182,12 +208,9 @@
                                     ViewModels.removeCard(options.setId, cards[i].data);
                                 }
                                 ViewModels.loadCards(options.setId);
-                                
-
                             }));
                         msg.commands.append(new Windows.UI.Popups.UICommand(
                             "Не", function () {
-
                             }));
 
                         msg.defaultCommandIndex = 0;

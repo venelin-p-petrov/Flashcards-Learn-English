@@ -72,6 +72,39 @@
             });
     }
 
+    var saveIconToLocalData = function (fileToSave) {
+        documentsLibrary.createFolderAsync("Flashcards-Learn-English",
+             Windows.Storage.CreationCollisionOption.openIfExists).done(function (folder) {
+                 folder.createFolderAsync("Icons",
+                    Windows.Storage.CreationCollisionOption.openIfExists).done(function (folder1) {
+                        fileToSave.copyAsync(folder1, fileToSave.name);
+            })
+        });
+        
+    }
+    var loadIconFromLocalDataAsync = function () {
+        return new WinJS.Promise(function (complete, error) {
+            if (appFolder) {
+                appFolder.getFolderAsync("Icons").done(function (savedIconsFolder) {
+                    savedIconsFolder.getFilesAsync().done(function (files) {
+                        complete(files);
+                    });
+                });
+            }
+            else {
+                appFolder = documentsLibrary.createFolderAsync("Flashcards-Learn-English",
+                Windows.Storage.CreationCollisionOption.openIfExists).done(function (folder) {
+                    folder.createFolderAsync("Icons", Windows.Storage.CreationCollisionOption.openIfExists).done(function (savedIconsFolder) {
+                        savedIconsFolder.getFilesAsync().done(function (files) {
+                            complete(files);
+                        });
+                    });
+                });
+            }
+
+        });
+    }
+
     var loadSetsFromLocalDataAsync = function () {
         return new WinJS.Promise(function (complete, error) {
             if (appFolder) {
@@ -101,6 +134,8 @@
         updateCurrentDeck: updateCurrentDeck,
         hasCards: hasCards,
         saveSet: saveSetToLocalData,
-        loadSetsAsync: loadSetsFromLocalDataAsync
+        loadSetsAsync: loadSetsFromLocalDataAsync,
+        saveIconToLocalData: saveIconToLocalData,
+        loadIconFromLocalDataAsync: loadIconFromLocalDataAsync
     });
 })();

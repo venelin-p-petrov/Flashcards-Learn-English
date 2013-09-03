@@ -25,6 +25,10 @@
           <FileTypeAssociation Name="flashcard-set-files">
             <SupportedFileTypes>
               <FileType>.flset</FileType>
+              <FileType>.png</FileType>
+              <FileType>.jpg</FileType>
+              <FileType>.gif</FileType>
+              <FileType>.jpeg</FileType>
             </SupportedFileTypes>
           </FileTypeAssociation>
         </Extension>

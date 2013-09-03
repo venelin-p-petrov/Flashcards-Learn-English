@@ -83,6 +83,7 @@
         currentCards: currentCards,
         addSet: function (title, iconUrl) {
             var set = new Models.SetModel(title, iconUrl);
+            
             Data.addSet(set);
             return set;
         },
