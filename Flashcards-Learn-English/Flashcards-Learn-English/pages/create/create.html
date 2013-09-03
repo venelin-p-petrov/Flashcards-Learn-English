@@ -1,39 +1,43 @@
 ﻿<!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <title>create</title>
+<head>
+    <meta charset="utf-8" />
+    <title>create</title>
 
-        <!-- WinJS references -->
-        <link href="//Microsoft.WinJS.1.0/css/ui-light.css" rel="stylesheet" />
-        <script src="//Microsoft.WinJS.1.0/js/base.js"></script>
-        <script src="//Microsoft.WinJS.1.0/js/ui.js"></script>
+    <!-- WinJS references -->
+    <link href="//Microsoft.WinJS.1.0/css/ui-light.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.1.0/js/base.js"></script>
+    <script src="//Microsoft.WinJS.1.0/js/ui.js"></script>
 
-        <link href="create.css" rel="stylesheet" />
-        <script src="create.js"></script>
-    </head>
-    <body>
-        <div class="create fragment">
-            <div id="card-template" data-win-control="WinJS.Binding.Template">
-                <div>
-                    <div data-win-bind="innerText: bgWord"></div>
-                </div>
+    <link href="create.css" rel="stylesheet" />
+    <script src="create.js"></script>
+</head>
+<body>
+    <div class="create fragment">
+        <div id="card-template" data-win-control="WinJS.Binding.Template">
+            <div>
+                <span data-win-bind="innerText: bgWord"></span>
             </div>
+        </div>
 
-            <header aria-label="Header content" role="banner">
-                <button class="win-backbutton" aria-label="Back" disabled type="button"></button>
-                <h1 class="titlearea win-type-ellipsis">
-                    <span class="pagetitle" data-win-bind="innerText: title"></span>
-                </h1>
-            </header>
-            <section aria-label="Main content" role="main">
+        <header aria-label="Header content" role="banner">
+            <button class="win-backbutton" aria-label="Back" disabled type="button"></button>
+            <h1 class="titlearea win-type-ellipsis">
+                <span class="pagetitle" data-win-bind="innerText: title"></span>
+            </h1>
+        </header>
+        <section id="create-page" aria-label="Main content" role="main">
+            <div id="set-visualization">
                 <div>
-                    <label>Име на тесте</label>
-                    <input id="set-title" data-win-bind="value: setTitle" />
-                    <br />
-                    <label>Икона</label>
-                    <p id="set-icon" data-win-bind="innerText: iconUrl"></p>
+                    <label>Име на тесте </label>
+                    <input id="set-title" data-win-bind="value: setTitle" maxlength="16" />
+                </div>
+                <div>
+                    <label>Икона </label>
+                    <span id="set-icon" data-win-bind="innerText: iconUrl"></span>
                     <button id="set-icon-browse">Browse</button>
+                </div>
+                <div>
                     <button id="create-set-button">Запази</button>
                 </div>
                 <div>
@@ -44,26 +48,35 @@
                          }">
                     </div>
                 </div>
+            </div>
+
+            <div id="card-creation">
                 <div>
                     <label for="bg-word-input">Българска дума</label>
                     <input id="bg-word-input" />
-                    <br />
+                </div>
+                <div>
                     <label for="en-word-input">Английска дума</label>
                     <input id="en-word-input" />
-                    <br />
+                </div>
+                <div>
                     <label for="pronunciation-input">Произношение</label>
                     <input id="pronunciation-input" disabled="disabled" />
-                    <br />
+                </div>
+                <div>
                     <label for="part-of-speech-input">Част на речта</label>
                     <input id="part-of-speech-input" />
-                    <br />
+                </div>
+                <div>
                     <label for="en-definition-input">Английска дефиниция</label>
-                    <input id="en-definition-input" />
-                    <br />
+                    <textarea id="en-definition-input" ></textarea>
+                </div>
+                <div>
                     <button id="generate-word">Генерирай съдържание</button>
                     <button id="add-card">Добави карта</button>
                 </div>
-            </section>
-        </div>
-    </body>
+            </div>
+        </section>
+    </div>
+</body>
 </html>

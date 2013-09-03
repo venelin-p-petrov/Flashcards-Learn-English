@@ -1,6 +1,14 @@
-﻿#set-list .win-item {
-    padding: 5px;
-    background-color: #fff42d;
+﻿#set-list.win-listview {
+    border: 1px solid #fff;
+    -ms-grid-column: 1;
+    -ms-grid-row: 1;
+    width: 100%;
+    height: 100%;
+}
+
+#set-list .win-item {
+    padding: 10px;
+    background-color: #4671d5;
     text-align: center;
 }
 
@@ -9,15 +17,17 @@
 }
 
 .homepage section[role=main] {
+    display: -ms-grid;
     margin-left: 120px;
     margin-right: 120px;
+    -ms-grid-columns: auto;
+    -ms-grid-rows: 1fr 130px;
 }
 
 @media screen and (-ms-view-state: snapped) {
     .homepage section[role=main] {
         margin-left: 20px;
         margin-right: 20px;
-
     }
 }
 

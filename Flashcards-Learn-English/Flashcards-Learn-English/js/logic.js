@@ -59,8 +59,9 @@
         return false;
     }
 
-    var saveSetToLocalData = function (set) {
-        appFolder = documentsLibrary.createFolderAsync("Flashcards-Learn-English",
+    var saveSetToLocalDataAsync = function (set) {
+        return new WinJS.Promise(function (complete, error) {
+            appFolder = documentsLibrary.createFolderAsync("Flashcards-Learn-English",
             Windows.Storage.CreationCollisionOption.openIfExists).done(function (folder) {
                 folder.createFolderAsync("Saved Sets",
                    Windows.Storage.CreationCollisionOption.openIfExists).done(function (folder1) {
@@ -68,8 +69,9 @@
                            Windows.Storage.CreationCollisionOption.replaceExisting).done(function (file) {
                                Windows.Storage.FileIO.writeTextAsync(file, JSON.stringify(set));
                            });
-                    });
+                   });
             });
+        });
     }
 
     var loadSetsFromLocalDataAsync = function () {
@@ -95,12 +97,28 @@
         });
     }
 
+    var loadDefault = function () {
+        return new WinJS.Promise(function (complete, error) {
+            if (!Windows.Storage.ApplicationData.current.localSettings.values["already-run"]) {
+                Data.sets.push(Data.Animals());
+                Data.sets.push(Data.AtHome());
+                Data.sets.push(Data.AtSchool());
+
+                for (var i = 0; i < Data.sets.length; i++) {
+                    Logic.updateCurrentDeck(Data.sets[i]);
+                    Logic.saveSet(Data.sets[i]).then(complete);
+                }
+            }
+        });
+    }
+
     WinJS.Namespace.define("Logic", {
         addCardToDeck: addCardToDeck,
         removeCardFromDeck: removeCardFromDeck,
         updateCurrentDeck: updateCurrentDeck,
         hasCards: hasCards,
-        saveSet: saveSetToLocalData,
-        loadSetsAsync: loadSetsFromLocalDataAsync
+        saveSet: saveSetToLocalDataAsync,
+        loadSetsAsync: loadSetsFromLocalDataAsync,
+        loadDefault: loadDefault
     });
 })();

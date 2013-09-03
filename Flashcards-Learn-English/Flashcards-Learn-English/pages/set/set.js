@@ -21,11 +21,21 @@
             var correctButton = document.getElementById("current-correct");
             var incorrectButton = document.getElementById("current-incorrect");
             var playPronounciationButton = document.getElementById("playPronounciation");
+            var cardFront = document.getElementById("current-front");
+            var cardBack = document.getElementById("current-back");
 
             changeSetButton.listen("click", function (e) {
                 e.preventDefault();
                 WinJS.Navigation.navigate("/pages/create/create.html", { type: "change", setId: options.setId });
                 appBar.hide();
+            });
+
+            cardFront.addEventListener("click", function () {
+                cardFront.style.display = "none";
+                cardBack.style.display = "-ms-grid";
+                WinJS.UI.Animation.enterContent(cardBack,
+                    { top: "0px", left: "50px", rtlflip: true },
+                    { mechanism: "transition" });
             });
 
             correctButton.addEventListener("click", function (e) {
@@ -47,6 +57,12 @@
                 set.lastModified = Date.now();
                 Logic.saveSet(set);
                 SetCodeBehind.callUpdate(options.setId);
+
+                cardFront.style.display = "-ms-grid";
+                cardBack.style.display = "none";
+                WinJS.UI.Animation.enterContent(cardFront,
+                    { top: "0px", left: "50px", rtlflip: true },
+                    { mechanism: "transition" });
             });
 
             incorrectButton.addEventListener("click", function (e) {
@@ -64,6 +80,12 @@
                 set.lastModified = Date.now();
                 Logic.saveSet(set);
                 SetCodeBehind.callUpdate(options.setId);
+
+                cardFront.style.display = "-ms-grid";
+                cardBack.style.display = "none";
+                WinJS.UI.Animation.enterContent(cardFront,
+                    { top: "0px", left: "50px", rtlflip: true },
+                    { mechanism: "transition" });
             });
 
             

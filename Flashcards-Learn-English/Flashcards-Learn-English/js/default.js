@@ -8,19 +8,38 @@
     var app = WinJS.Application;
     var activation = Windows.ApplicationModel.Activation;
     var nav = WinJS.Navigation;
+    var appData = Windows.Storage.ApplicationData.current;
+
+    //appData.localSettings.values["already-run"] = false;
 
     app.addEventListener("activated", function (args) {
         if (args.detail.kind === activation.ActivationKind.launch) {
             if (args.detail.previousExecutionState !== activation.ApplicationExecutionState.terminated) {
                 
-                Logic.loadSetsAsync().then(function (files) {
-                    files.forEach(function (file) {
-                        Windows.Storage.FileIO.readTextAsync(file).then(function (text) {
-                            ViewModels.addSetObject(JSON.parse(text));
-                            ViewModels.loadSets();
+                if (!appData.localSettings.values["already-run"]) {
+                    Logic.loadDefault().then(function () {
+                        Logic.loadSetsAsync().then(function (files) {
+                            files.forEach(function (file) {
+                                Windows.Storage.FileIO.readTextAsync(file).then(function (text) {
+                                    ViewModels.addSetObject(JSON.parse(text));
+                                    ViewModels.loadSets();
+                                });
+                            });
                         });
                     });
-                });
+                }
+                else {
+                    Logic.loadSetsAsync().then(function (files) {
+                        files.forEach(function (file) {
+                            Windows.Storage.FileIO.readTextAsync(file).then(function (text) {
+                                ViewModels.addSetObject(JSON.parse(text));
+                                ViewModels.loadSets();
+                            });
+                        });
+                    });
+                }
+
+                appData.localSettings.values["already-run"] = true;
 
             } else {
                 // TODO: This application has been reactivated from suspension.

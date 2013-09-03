@@ -1,8 +1,285 @@
-﻿#card-list {
-    height: 200px;
+﻿#create-page #set-visualization {
+    display: -ms-grid;
+    -ms-grid-columns: 1fr;
+    -ms-grid-rows: 20px 40px 40px 1fr 50px;
+    -ms-grid-column: 1;
+    -ms-grid-row: 1;
+    width: 100%;
+    height: 100%;
+    background-color: #4671d5;
+    font-family: "Segoe UI Semilight";
+    font-size: 11pt;
 }
 
+    #create-page #set-visualization > div:nth-child(1) {
+        display: -ms-grid;
+        -ms-grid-columns: 100px 1fr 40px;
+        -ms-grid-rows: 1fr;
+        -ms-grid-column: 1;
+        -ms-grid-row: 2;
+        width: 100%;
+        height: 100%;
+    }
+
+        #create-page #set-visualization > div:nth-child(1) > label {
+            display: block;
+            -ms-grid-column: 1;
+            -ms-grid-row: 1;
+            -ms-grid-row-align: center;
+            width: 100%;
+            text-align: center;
+        }
+
+        #create-page #set-visualization > div:nth-child(1) > input {
+            -ms-grid-column: 2;
+            -ms-grid-row: 1;
+            -ms-grid-row-align: center;
+            width: 100%;
+        }
+
+    #create-page #set-visualization > div:nth-child(2) {
+        display: -ms-grid;
+        -ms-grid-columns: 100px 1fr 80px 40px;
+        -ms-grid-rows: 1fr;
+        -ms-grid-column: 1;
+        -ms-grid-row: 3;
+        width: 100%;
+        height: 100%;
+    }
+
+        #create-page #set-visualization > div:nth-child(2) > label {
+            display: block;
+            -ms-grid-column: 1;
+            -ms-grid-row: 1;
+            -ms-grid-row-align: center;
+            width: 100%;
+            text-align: center;
+        }
+
+        #create-page #set-visualization > div:nth-child(2) > span {
+            display: block;
+            -ms-grid-column: 2;
+            -ms-grid-row: 1;
+            -ms-grid-row-align: center;
+            width: 100%;
+        }
+
+        #create-page #set-visualization > div:nth-child(2) > button {
+            display: block;
+            -ms-grid-column: 3;
+            -ms-grid-row: 1;
+            -ms-grid-column-align: center;
+            -ms-grid-row-align: end;
+        }
+
+    #create-page #set-visualization > div:nth-child(3) {
+        -ms-grid-column: 1;
+        -ms-grid-row: 5;
+        -ms-grid-column-align: end;
+        -ms-grid-row-align: start;
+        width: 100%;
+        height: 100%;
+        padding: 10px 30px 10px 10px;
+        text-align: right;
+    }
+
+    #create-page #set-visualization > div:nth-child(4) {
+        -ms-grid-column: 1;
+        -ms-grid-row: 4;
+        width: 100%;
+        height: 100%;
+    }
+
+#card-list.win-listview {
+    -ms-grid-column: 1;
+    -ms-grid-row: 3;
+    width: 100%;
+    height: 100%;
+}
+
+#card-list .win-item {
+    padding: 10px;
+    background-color: #7d98d7;
+    text-align: center;
+}
+
+    #card-list .win-item span {
+        display: block;
+        width: 150px;
+        font-size: 20pt;
+        text-align: center;
+    }
+
+#create-page #card-creation {
+    display: -ms-grid;
+    -ms-grid-columns: 1fr;
+    -ms-grid-rows: 20px (40px)[4] 180px 40px;
+    -ms-grid-column: 3;
+    -ms-grid-row: 1;
+    width: 100%;
+    height: 100%;
+    background-color: #4671d5;
+}
+
+    #create-page #card-creation > div:nth-child(1) {
+        display: -ms-grid;
+        -ms-grid-columns: 120px 1fr 40px;
+        -ms-grid-rows: 1fr;
+        -ms-grid-column: 1;
+        -ms-grid-row: 2;
+        width: 100%;
+        height: 100%;
+    }
+
+        #create-page #card-creation > div:nth-child(1) label {
+            display: block;
+            -ms-grid-column: 1;
+            -ms-grid-row: 1;
+            -ms-grid-row-align: center;
+            width: 100%;
+            text-align: center;
+        }
+
+        #create-page #card-creation > div:nth-child(1) input {
+            -ms-grid-column: 2;
+            -ms-grid-row: 1;
+            -ms-grid-row-align: center;
+            width: 100%;
+        }
+
+    #create-page #card-creation > div:nth-child(2) {
+        display: -ms-grid;
+        -ms-grid-columns: 120px 1fr 40px;
+        -ms-grid-rows: 1fr;
+        -ms-grid-column: 1;
+        -ms-grid-row: 3;
+        width: 100%;
+        height: 100%;
+    }
+
+        #create-page #card-creation > div:nth-child(2) label {
+            display: block;
+            -ms-grid-column: 1;
+            -ms-grid-row: 1;
+            -ms-grid-row-align: center;
+            width: 100%;
+            text-align: center;
+        }
+
+        #create-page #card-creation > div:nth-child(2) input {
+            -ms-grid-column: 2;
+            -ms-grid-row: 1;
+            -ms-grid-row-align: center;
+            width: 100%;
+        }
+
+    #create-page #card-creation > div:nth-child(3) {
+        display: -ms-grid;
+        -ms-grid-columns: 120px 1fr 40px;
+        -ms-grid-rows: 1fr;
+        -ms-grid-column: 1;
+        -ms-grid-row: 4;
+        width: 100%;
+        height: 100%;
+    }
+
+        #create-page #card-creation > div:nth-child(3) label {
+            display: block;
+            -ms-grid-column: 1;
+            -ms-grid-row: 1;
+            -ms-grid-row-align: center;
+            width: 100%;
+            text-align: center;
+        }
+
+        #create-page #card-creation > div:nth-child(3) input {
+            -ms-grid-column: 2;
+            -ms-grid-row: 1;
+            -ms-grid-row-align: center;
+            width: 100%;
+        }
+
+    #create-page #card-creation > div:nth-child(4) {
+        display: -ms-grid;
+        -ms-grid-columns: 120px 1fr 40px;
+        -ms-grid-rows: 1fr;
+        -ms-grid-column: 1;
+        -ms-grid-row: 5;
+        width: 100%;
+        height: 100%;
+    }
+
+        #create-page #card-creation > div:nth-child(4) label {
+            display: block;
+            -ms-grid-column: 1;
+            -ms-grid-row: 1;
+            -ms-grid-row-align: center;
+            width: 100%;
+            text-align: center;
+        }
+
+        #create-page #card-creation > div:nth-child(4) input {
+            -ms-grid-column: 2;
+            -ms-grid-row: 1;
+            -ms-grid-row-align: center;
+            width: 100%;
+        }
+
+    #create-page #card-creation > div:nth-child(5) {
+        display: -ms-grid;
+        -ms-grid-columns: 120px 1fr 40px;
+        -ms-grid-rows: 1fr;
+        -ms-grid-column: 1;
+        -ms-grid-row: 6;
+        width: 100%;
+        height: 100%;
+    }
+
+        #create-page #card-creation > div:nth-child(5) label {
+            display: block;
+            -ms-grid-column: 1;
+            -ms-grid-row: 1;
+            -ms-grid-row-align: center;
+            width: 100%;
+            text-align: center;
+        }
+
+        #create-page #card-creation > div:nth-child(5) textarea {
+            -ms-grid-column: 2;
+            -ms-grid-row: 1;
+            width: calc(100% - 10px);
+            height: calc(100% - 20px);
+            padding: 5px;
+        }
+
+    #create-page #card-creation > div:nth-child(6) {
+        display: -ms-grid;
+        -ms-grid-columns: 1fr 125px 35px;
+        -ms-grid-rows: 1fr;
+        -ms-grid-column: 1;
+        -ms-grid-row: 7;
+        width: 100%;
+        height: 100%;
+    }
+
+        #create-page #card-creation > div:nth-child(6) button:nth-child(1) {
+            -ms-grid-column: 1;
+            -ms-grid-row: 1;
+            -ms-grid-column-align: end;
+            -ms-grid-row-align: center;
+        }
+
+        #create-page #card-creation > div:nth-child(6) button:nth-child(2) {
+            -ms-grid-column: 2;
+            -ms-grid-row: 1;
+            -ms-grid-column-align: end;
+            -ms-grid-row-align: center;
+        }
+
 .create section[role=main] {
+    display: -ms-grid;
+    -ms-grid-columns: 1fr 80px 1fr 240px;
+    -ms-grid-rows: 1fr 130px;
     margin-left: 120px;
     margin-right: 120px;
 }
