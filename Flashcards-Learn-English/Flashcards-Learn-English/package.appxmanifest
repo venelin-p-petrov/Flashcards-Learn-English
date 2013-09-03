@@ -21,10 +21,18 @@
       </VisualElements>
       <Extensions>
         <Extension Category="windows.search" />
+        <Extension Category="windows.fileTypeAssociation">
+          <FileTypeAssociation Name="flashcard-set-files">
+            <SupportedFileTypes>
+              <FileType>.flset</FileType>
+            </SupportedFileTypes>
+          </FileTypeAssociation>
+        </Extension>
       </Extensions>
     </Application>
   </Applications>
   <Capabilities>
+    <Capability Name="documentsLibrary" />
     <Capability Name="internetClient" />
   </Capabilities>
 </Package>

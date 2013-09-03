@@ -1,7 +1,8 @@
 ﻿/// <reference path="//Microsoft.WinJS.1.0/js/base.js" />
 (function () {
 
-    var localFolder = Windows.Storage.ApplicationData.current.localFolder;
+    var documentsLibrary = Windows.Storage.KnownFolders.documentsLibrary;
+    var appFolder = null;
 
     var updateCurrentDeck = function (set) {
         if (set.currentDeck.cards.length == 0) {
@@ -59,22 +60,38 @@
     }
 
     var saveSetToLocalData = function (set) {
-        localFolder.createFolderAsync("Saved Sets",
+        appFolder = documentsLibrary.createFolderAsync("Flashcards-Learn-English",
             Windows.Storage.CreationCollisionOption.openIfExists).done(function (folder) {
-                folder.createFileAsync(set.title.toString() + ".flset",
-                    Windows.Storage.CreationCollisionOption.replaceExisting).done(function (file) {
-                        Windows.Storage.FileIO.writeTextAsync(file, JSON.stringify(set));
+                folder.createFolderAsync("Saved Sets",
+                   Windows.Storage.CreationCollisionOption.openIfExists).done(function (folder1) {
+                       folder1.createFileAsync(set.title.toString() + ".flset",
+                           Windows.Storage.CreationCollisionOption.replaceExisting).done(function (file) {
+                               Windows.Storage.FileIO.writeTextAsync(file, JSON.stringify(set));
+                           });
                     });
             });
     }
 
     var loadSetsFromLocalDataAsync = function () {
         return new WinJS.Promise(function (complete, error) {
-            localFolder.getFolderAsync("Saved Sets").done(function (savedSetsFolder) {
-                savedSetsFolder.getFilesAsync().done(function (files) {
-                    complete(files);
+            if (appFolder) {
+                appFolder.getFolderAsync("Saved Sets").done(function (savedSetsFolder) {
+                    savedSetsFolder.getFilesAsync().done(function (files) {
+                        complete(files);
+                    });
                 });
-            });
+            }
+            else {
+                appFolder = documentsLibrary.createFolderAsync("Flashcards-Learn-English",
+                Windows.Storage.CreationCollisionOption.openIfExists).done(function (folder) {
+                    folder.createFolderAsync("Saved Sets", Windows.Storage.CreationCollisionOption.openIfExists).done(function (savedSetsFolder) {
+                        savedSetsFolder.getFilesAsync().done(function (files) {
+                            complete(files);
+                        });
+                    });
+                });
+            }
+           
         });
     }
 
