@@ -1,47 +1,73 @@
 ﻿<!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <title>set</title>
+<head>
+    <meta charset="utf-8" />
+    <title>set</title>
 
-        <!-- WinJS references -->
-        <link href="//Microsoft.WinJS.1.0/css/ui-light.css" rel="stylesheet" />
-        <script src="//Microsoft.WinJS.1.0/js/base.js"></script>
-        <script src="//Microsoft.WinJS.1.0/js/ui.js"></script>
+    <!-- WinJS references -->
+    <link href="//Microsoft.WinJS.1.0/css/ui-light.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.1.0/js/base.js"></script>
+    <script src="//Microsoft.WinJS.1.0/js/ui.js"></script>
 
-        <link href="set.css" rel="stylesheet" />
-        <script src="set.js"></script>
-    </head>
-    <body>
-        <div class="set fragment">
-            <header aria-label="Header content" role="banner">
-                <button class="win-backbutton" aria-label="Back" disabled type="button"></button>
-                <h1 class="titlearea win-type-ellipsis">
-                    <span class="pagetitle" data-win-bind="innerText: title"></span>
-                </h1>
-            </header>
-            <section id="set-page" aria-label="Main content" role="main">
+    <link href="set.css" rel="stylesheet" />
+    <script src="set.js"></script>
+</head>
+<body>
+    <div class="set fragment">
+        <header aria-label="Header content" role="banner">
+            <button class="win-backbutton" aria-label="Back" disabled type="button"></button>
+            <h1 class="titlearea win-type-ellipsis">
+                <span class="pagetitle" data-win-bind="innerText: title"></span>
+            </h1>
+        </header>
+        <section id="set-page" aria-label="Main content" role="main">
+            <div id="card-state">
                 <div>
-                    <div data-win-bind="innerText: redCards.number"></div>
-                    <div data-win-bind="innerText: yellowCards.number"></div>
-                    <div data-win-bind="innerText: greenCards.number"></div>
-                    <div data-win-bind="innerText: currentCards.number"></div>
+                    <span>Ненаучени карти</span>
+                    <span data-win-bind="innerText: redCards.number"></span>
                 </div>
-                <div id="current-card-container">
-                    <div id="current-card">
-                        <div id="current-front" data-win-bind="innerText: currentCard.card.bgWord"></div>
-                        <div id="current-back">
-                            <p id="englishWord" data-win-bind="innerText: currentCard.card.enWord"></p>
-                            <p id="enPronunciation" data-win-bind="innerText: currentCard.card.enPronunciation"></p>
-                            <button id="playPronounciation"><img src="/images/sound.png"/></button>
-                            <p data-win-bind="innerText: currentCard.card.enPartOfSpeech"></p>
-                            <p data-win-bind="innerText: currentCard.card.enDefinition"></p>
-                            <button id="current-correct"><img src="/images/Action-ok-icon.png"/></button>
-                            <button id="current-incorrect"><img src="/images/Action-cancel-icon.png"/></button>
-                        </div>
+                <div>
+                    <span>Познати карти</span>
+                    <span data-win-bind="innerText: yellowCards.number"></span>
+                </div>
+                <div>
+                    <span>Научени карти</span>
+                    <span data-win-bind="innerText: greenCards.number"></span>
+                </div>
+                <div>
+                    <span>Текущи карти</span>
+                    <span data-win-bind="innerText: currentCards.number"></span>
+                </div>
+            </div>
+            <div id="current-card">
+                <div id="current-front">
+                    <div data-win-bind="innerText: currentCard.card.bgWord"></div>
+                    <div>Докосни за отговор</div>
+                </div>
+                <div id="current-back">
+                    <div>
+                        <span id="englishWord" data-win-bind="innerText: currentCard.card.enWord"></span>
+                    </div>
+                    <div>
+                        <span>Произношение: </span>
+                        <button id="playPronounciation">Чуй</button>
+                        <span id="enPronunciation" data-win-bind="innerText: currentCard.card.enPronunciation"></span>
+                    </div>
+                    <div>
+                        <span>Част на речта: </span>
+                        <span data-win-bind="innerText: currentCard.card.enPartOfSpeech"></span>
+                    </div>
+                    <div>
+                        <span>Дефиниция: </span>
+                        <span data-win-bind="innerText: currentCard.card.enDefinition"></span>
+                    </div>
+                    <div>
+                        <button id="current-correct">Yes</button>
+                        <button id="current-incorrect">No</button>
                     </div>
                 </div>
-            </section>
-        </div>
-    </body>
+            </div>
+        </section>
+    </div>
+</body>
 </html>

@@ -1,13 +1,9 @@
 ﻿/// <reference path="data.js" />
 /// <reference path="//Microsoft.WinJS.1.0/js/base.js" />
 (function () {
-    var sets = new Array(Data.Animals(), Data.AtHome(), Data.AtSchool());
+    var sets = new Array();
     var cards = new Array();
     var newCards = new Array();
-
-    for (var i = 0; i < sets.length; i++) {
-        Logic.updateCurrentDeck(sets[i]);
-    }
 
     var getSets = function () {
         return sets;
@@ -111,6 +107,7 @@
     }
 
     WinJS.Namespace.define("Data", {
+        sets: sets,
         getSets: getSets,
         getSetById: getSetById,
         getCards: getCards,
