@@ -126,82 +126,82 @@
         return animals;
     };
 
-    var atHome = new Models.SetModel("В къщи", "/images/atHome.jpg");
-    Logic.addCardToDeck(new Models.CardModel(
-        "кухня",
-        "kitchen"), atHome.decks[0]);
-    Logic.addCardToDeck(new Models.CardModel(
-        "спалня",
-        "bedroom"), atHome.decks[0]);
-    Logic.addCardToDeck(new Models.CardModel(
-        "баня",
-        "bathroom"), atHome.decks[0]);
-    Logic.addCardToDeck(new Models.CardModel(
-        "таванско помещение",
-        "attic"), atHome.decks[0]);
-    Logic.addCardToDeck(new Models.CardModel(
-        "мазе",
-        "basement"), atHome.decks[0]);
-    Logic.addCardToDeck(new Models.CardModel(
-        "покрив",
-        "roof"), atHome.decks[0]);
-    Logic.addCardToDeck(new Models.CardModel(
-        "всекидневна",
-        "living room"), atHome.decks[0]);
-    Logic.addCardToDeck(new Models.CardModel(
-        "бална зала",
-        "ball room"), atHome.decks[0]);
-    Logic.addCardToDeck(new Models.CardModel(
-        "зимна градина",
-        "winter garden"), atHome.decks[0]);
-    Logic.addCardToDeck(new Models.CardModel(
-        "бомбоубежище",
-        "bomb shelter"), atHome.decks[0]);
+    //var atHome = new Models.SetModel("В къщи", "/images/atHome.jpg");
+    //Logic.addCardToDeck(new Models.CardModel(
+    //    "кухня",
+    //    "kitchen"), atHome.decks[0]);
+    //Logic.addCardToDeck(new Models.CardModel(
+    //    "спалня",
+    //    "bedroom"), atHome.decks[0]);
+    //Logic.addCardToDeck(new Models.CardModel(
+    //    "баня",
+    //    "bathroom"), atHome.decks[0]);
+    //Logic.addCardToDeck(new Models.CardModel(
+    //    "таванско помещение",
+    //    "attic"), atHome.decks[0]);
+    //Logic.addCardToDeck(new Models.CardModel(
+    //    "мазе",
+    //    "basement"), atHome.decks[0]);
+    //Logic.addCardToDeck(new Models.CardModel(
+    //    "покрив",
+    //    "roof"), atHome.decks[0]);
+    //Logic.addCardToDeck(new Models.CardModel(
+    //    "всекидневна",
+    //    "living room"), atHome.decks[0]);
+    //Logic.addCardToDeck(new Models.CardModel(
+    //    "бална зала",
+    //    "ball room"), atHome.decks[0]);
+    //Logic.addCardToDeck(new Models.CardModel(
+    //    "зимна градина",
+    //    "winter garden"), atHome.decks[0]);
+    //Logic.addCardToDeck(new Models.CardModel(
+    //    "бомбоубежище",
+    //    "bomb shelter"), atHome.decks[0]);
 
-    var getAtHome = function () {
-        return atHome;
-    };
+    //var getAtHome = function () {
+    //    return atHome;
+    //};
 
-    var atSchool = new Models.SetModel("В училище", "/images/atSchool.jpg");
-    Logic.addCardToDeck(new Models.CardModel(
-        "учител",
-        "teacher"), atSchool.decks[0]);
-    Logic.addCardToDeck(new Models.CardModel(
-        "директор",
-        "principal"), atSchool.decks[0]);
-    Logic.addCardToDeck(new Models.CardModel(
-        "черна дъска",
-        "blackboard"), atSchool.decks[0]);
-    Logic.addCardToDeck(new Models.CardModel(
-        "молив",
-        "pencil"), atSchool.decks[0]);
-    Logic.addCardToDeck(new Models.CardModel(
-        "калкулатор",
-        "calculator"), atSchool.decks[0]);
-    Logic.addCardToDeck(new Models.CardModel(
-        "ножици",
-        "scissors"), atSchool.decks[0]);
-    Logic.addCardToDeck(new Models.CardModel(
-        "глобус",
-        "globe"), atSchool.decks[0]);
-    Logic.addCardToDeck(new Models.CardModel(
-        "гума",
-        "eraser"), atSchool.decks[0]);
-    Logic.addCardToDeck(new Models.CardModel(
-        "линия",
-        "ruler"), atSchool.decks[0]);
+    //var atSchool = new Models.SetModel("В училище", "/images/atSchool.jpg");
+    //Logic.addCardToDeck(new Models.CardModel(
+    //    "учител",
+    //    "teacher"), atSchool.decks[0]);
+    //Logic.addCardToDeck(new Models.CardModel(
+    //    "директор",
+    //    "principal"), atSchool.decks[0]);
+    //Logic.addCardToDeck(new Models.CardModel(
+    //    "черна дъска",
+    //    "blackboard"), atSchool.decks[0]);
+    //Logic.addCardToDeck(new Models.CardModel(
+    //    "молив",
+    //    "pencil"), atSchool.decks[0]);
+    //Logic.addCardToDeck(new Models.CardModel(
+    //    "калкулатор",
+    //    "calculator"), atSchool.decks[0]);
+    //Logic.addCardToDeck(new Models.CardModel(
+    //    "ножици",
+    //    "scissors"), atSchool.decks[0]);
+    //Logic.addCardToDeck(new Models.CardModel(
+    //    "глобус",
+    //    "globe"), atSchool.decks[0]);
+    //Logic.addCardToDeck(new Models.CardModel(
+    //    "гума",
+    //    "eraser"), atSchool.decks[0]);
+    //Logic.addCardToDeck(new Models.CardModel(
+    //    "линия",
+    //    "ruler"), atSchool.decks[0]);
 
-    var getAtSchool = function () {
-        return atSchool;
-    };
+    //var getAtSchool = function () {
+    //    return atSchool;
+    //};
 
     WinJS.Utilities.markSupportedForProcessing(getAnimals);
-    WinJS.Utilities.markSupportedForProcessing(getAtHome);
-    WinJS.Utilities.markSupportedForProcessing(getAtSchool);
+    //WinJS.Utilities.markSupportedForProcessing(getAtHome);
+    //WinJS.Utilities.markSupportedForProcessing(getAtSchool);
 
     WinJS.Namespace.define("Data", {
         Animals: getAnimals,
-        AtHome: getAtHome,
-        AtSchool:getAtSchool
+        //AtHome: getAtHome,
+        //AtSchool:getAtSchool
     });
 })()

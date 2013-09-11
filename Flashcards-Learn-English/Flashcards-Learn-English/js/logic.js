@@ -1,8 +1,9 @@
 ﻿/// <reference path="//Microsoft.WinJS.1.0/js/base.js" />
 (function () {
 
-    var documentsLibrary = Windows.Storage.KnownFolders.documentsLibrary;
-    var appFolder = null;
+    var localFolder = Windows.Storage.ApplicationData.current.localFolder;
+    var storagePermissions = Windows.Storage.AccessCache.StorageApplicationPermissions;
+    var setIcons = {};
 
     var updateCurrentDeck = function (set) {
         if (set.currentDeck.cards.length == 0) {
@@ -59,111 +60,141 @@
         return false;
     }
 
-    var saveSetAsync = function (set) {
+    //var saveSetAsync = function (set) {
+    //    return new WinJS.Promise(function (complete, error) {
+    //        documentsLibrary.createFolderAsync("Flashcards-Learn-English",
+    //            Windows.Storage.CreationCollisionOption.openIfExists).done(function (folder) {
+    //                folder.createFolderAsync("Saved Sets",
+    //                   Windows.Storage.CreationCollisionOption.openIfExists).done(function (folder1) {
+    //                       folder1.createFileAsync(set.title.toString() + ".flset",
+    //                           Windows.Storage.CreationCollisionOption.replaceExisting).done(function (file) {
+    //                               Windows.Storage.FileIO.writeTextAsync(file, JSON.stringify(set));
+    //                           });
+    //                   });
+    //            });
+    //    });
+    //}
+
+    var saveIconAsync = function (fileToSave) {
         return new WinJS.Promise(function (complete, error) {
-            appFolder = documentsLibrary.createFolderAsync("Flashcards-Learn-English",
-            Windows.Storage.CreationCollisionOption.openIfExists).done(function (folder) {
-                folder.createFolderAsync("Saved Sets",
-                   Windows.Storage.CreationCollisionOption.openIfExists).done(function (folder1) {
-                       folder1.createFileAsync(set.title.toString() + ".flset",
-                           Windows.Storage.CreationCollisionOption.replaceExisting).done(function (file) {
-                               Windows.Storage.FileIO.writeTextAsync(file, JSON.stringify(set));
-                           });
-                   });
+            if (fileToSave) {
+                localFolder.createFolderAsync("Icons",
+                    Windows.Storage.CreationCollisionOption.openIfExists).then(function (iconsFolder) {
+                        fileToSave.copyAsync(iconsFolder, fileToSave.name,
+                            Windows.Storage.NameCollisionOption.generateUniqueName).then(function (iconCopy) {
+                                var token = iconCopy.name;
+                                storagePermissions.futureAccessList.addOrReplace(token, iconCopy);
+                                complete(token);
+                            },
+                            function (msg) {
+                                error("Иконата не можа да бъде запазена");
+                            });
+                    });
+            }
+            else {
+                error("Няма подадена икона за запазване.");
+            }
+        });
+    }
+
+    var deleteIconAsync = function (token) {
+        return new WinJS.Promise(function (complete, error) {
+            localFolder.createFolderAsync("Icons",
+                    Windows.Storage.CreationCollisionOption.openIfExists).then(function (iconsFolder) {
+                        iconsFolder.getFileAsync(token).then(function (iconFile) {
+                            iconFile.deleteAsync().then(function () {
+                                storagePermissions.futureAccessList.remove(token);
+                                complete();
+                            },
+                            function () {
+                                error("Възникна грешка при изтриването на иконата.");
+                            });
+                        },
+                        function () {
+                            complete();
+                        });
+                    });
+        });
+    }
+
+    var loadIcon = function (token) {
+        if (storagePermissions.futureAccessList.containsItem(token)) {
+            storagePermissions.futureAccessList.getFileAsync(token).then(function (iconFile) {
+                setIcons[token] = URL.createObjectURL(iconFile);
+            });
+        }
+    }
+
+    var loadIcons = function () {
+        var sets = Data.getSets();
+        for (var i = 0; i < sets.length; i++) {
+            Logic.loadIcon(sets[i].iconToken);
+        }
+    }
+
+    //var loadSetsAsync = function () {
+    //    return new WinJS.Promise(function (complete, error) {
+    //        documentsLibrary.createFolderAsync("Flashcards-Learn-English",
+    //            Windows.Storage.CreationCollisionOption.openIfExists).done(function (folder) {
+    //                folder.createFolderAsync("Saved Sets", Windows.Storage.CreationCollisionOption.openIfExists).done(function (savedSetsFolder) {
+    //                    savedSetsFolder.getFilesAsync().done(function (files) {
+    //                        complete(files);
+    //                    });
+    //                });
+    //            });
+    //    });
+    //}
+
+    //var loadDefault = function () {
+    //    return new WinJS.Promise(function (complete, error) {
+    //        if (!Windows.Storage.ApplicationData.current.localSettings.values["already-run"]) {
+    //            Data.sets.push(Data.Animals());
+    //            Data.sets.push(Data.AtHome());
+    //            Data.sets.push(Data.AtSchool());
+
+    //            for (var i = 0; i < Data.sets.length; i++) {
+    //                Logic.updateCurrentDeck(Data.sets[i]);
+    //                //Logic.saveSet(Data.sets[i]).then(complete);
+    //            }
+    //        }
+    //    });
+    //}
+
+    var deleteSetAsync = function (index) {
+        return new WinJS.Promise(function (complete, error) {
+            var set = Data.getSetById(index);
+            Logic.deleteIconAsync(set.iconToken).then(function () {
+                Data.removeSet(index);
+                Logic.saveSetsAsync().then(function () {
+                    complete();
+                });
+            },
+            function () {
+                error("Възникна грешка при изтриването на тестето.");
             });
         });
     }
 
-    var saveIcon = function (fileToSave) {
-        documentsLibrary.createFolderAsync("Flashcards-Learn-English",
-             Windows.Storage.CreationCollisionOption.openIfExists).done(function (folder) {
-                 folder.createFolderAsync("Icons",
-                    Windows.Storage.CreationCollisionOption.openIfExists).done(function (folder1) {
-                        fileToSave.copyAsync(folder1, fileToSave.name);
-            })
-        });
-        
-    }
+    var converterFileTokenToUrl = WinJS.Binding.converter(function (token) {
+        if (setIcons[token]) {
+            return setIcons[token];
+        }
+        else {
+            return "ms-appx:///images/card-file-icon.png";
+        }
+    });
 
-    var loadIconAsync = function () {
+    var saveSetsToLocalDataAsync = function () {
         return new WinJS.Promise(function (complete, error) {
-            if (appFolder) {
-                appFolder.getFolderAsync("Icons").done(function (savedIconsFolder) {
-                    savedIconsFolder.getFilesAsync().done(function (files) {
-                        complete(files);
-                    });
+            localFolder.createFileAsync("SavedSets",
+                Windows.Storage.CreationCollisionOption.replaceExisting).then(function (file) {
+                    var sets = Data.getSets();
+                    Windows.Storage.FileIO.writeTextAsync(file, JSON.stringify(sets));
+                    complete();
+                },
+                function () {
+                    error("Възникна грешка при запазването на тестетата.");
                 });
-            }
-            else {
-                appFolder = documentsLibrary.createFolderAsync("Flashcards-Learn-English",
-                Windows.Storage.CreationCollisionOption.openIfExists).done(function (folder) {
-                    folder.createFolderAsync("Icons", Windows.Storage.CreationCollisionOption.openIfExists).done(function (savedIconsFolder) {
-                        savedIconsFolder.getFilesAsync().done(function (files) {
-                            complete(files);
-                        });
-                    });
-                });
-            }
-
-        });
-    }
-
-    var loadSetsAsync = function () {
-        return new WinJS.Promise(function (complete, error) {
-            if (appFolder) {
-                appFolder.getFolderAsync("Saved Sets").done(function (savedSetsFolder) {
-                    savedSetsFolder.getFilesAsync().done(function (files) {
-                        complete(files);
-                    });
-                });
-            }
-            else {
-                appFolder = documentsLibrary.createFolderAsync("Flashcards-Learn-English",
-                Windows.Storage.CreationCollisionOption.openIfExists).done(function (folder) {
-                    folder.createFolderAsync("Saved Sets", Windows.Storage.CreationCollisionOption.openIfExists).done(function (savedSetsFolder) {
-                        savedSetsFolder.getFilesAsync().done(function (files) {
-                            complete(files);
-                        });
-                    });
-                });
-            }
-        });
-    }
-
-    var loadDefault = function () {
-        return new WinJS.Promise(function (complete, error) {
-            if (!Windows.Storage.ApplicationData.current.localSettings.values["already-run"]) {
-                Data.sets.push(Data.Animals());
-                Data.sets.push(Data.AtHome());
-                Data.sets.push(Data.AtSchool());
-
-                for (var i = 0; i < Data.sets.length; i++) {
-                    Logic.updateCurrentDeck(Data.sets[i]);
-                    Logic.saveSet(Data.sets[i]).then(complete);
-                }
-            }
-        });
-    }
-
-    var deleteSetAsync = function (index) {
-        return new WinJS.Promise(function (complete, error) {
-            if (appFolder) {
-                appFolder.getFolderAsync("Saved Sets").done(function (savedSetsFolder) {
-                    savedSetsFolder.getFilesAsync().done(function (files) {
-                        complete(files);
-                    });
-                });
-            }
-            else {
-                appFolder = documentsLibrary.createFolderAsync("Flashcards-Learn-English",
-                Windows.Storage.CreationCollisionOption.openIfExists).done(function (folder) {
-                    folder.createFolderAsync("Saved Sets", Windows.Storage.CreationCollisionOption.openIfExists).done(function (savedSetsFolder) {
-                        savedSetsFolder.getFilesAsync().done(function (files) {
-                            complete(files);
-                        });
-                    });
-                });
-            }
         });
     }
 
@@ -172,11 +203,15 @@
         removeCardFromDeck: removeCardFromDeck,
         updateCurrentDeck: updateCurrentDeck,
         hasCards: hasCards,
-        saveSet: saveSetAsync,
-        loadSetsAsync: loadSetsAsync,
-        saveIconToLocalData: saveIcon,
-        loadDefault: loadDefault,
-        loadIconFromLocalDataAsync: loadIconAsync,
-        deleteSet: deleteSetAsync
+        //saveSet: saveSetAsync,
+        //loadSetsAsync: loadSetsAsync,
+        saveIconAsync: saveIconAsync,
+        deleteIconAsync: deleteIconAsync,
+        loadIcon: loadIcon,
+        loadIcons: loadIcons,
+        //loadDefault: loadDefault,
+        deleteSetAsync: deleteSetAsync,
+        tokenToUrl: converterFileTokenToUrl,
+        saveSetsAsync: saveSetsToLocalDataAsync
     });
 })();

@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-  <Identity Name="2d74c189-f8af-49c4-a6ab-0e662ccb96b7" Version="1.0.0.0" Publisher="CN=User" />
+  <Identity Name="33690VenelinPetrov.Flashcards" Version="1.0.0.2" Publisher="CN=86077964-B0F8-4E46-AA61-262F24A02BBD" />
   <Properties>
-    <DisplayName>Flashcards-Learn-English</DisplayName>
-    <PublisherDisplayName>User</PublisherDisplayName>
+    <DisplayName>Flashcards: Научи Английски</DisplayName>
+    <PublisherDisplayName>Venelin Petrov</PublisherDisplayName>
     <Logo>images\storelogo.png</Logo>
   </Properties>
   <Prerequisites>
@@ -36,7 +36,6 @@
     </Application>
   </Applications>
   <Capabilities>
-    <Capability Name="documentsLibrary" />
     <Capability Name="internetClient" />
   </Capabilities>
 </Package>

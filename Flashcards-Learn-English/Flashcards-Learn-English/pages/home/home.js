@@ -55,39 +55,45 @@
 
             createSetButton.listen("click", function (e) {
                 e.preventDefault();
-                WinJS.Navigation.navigate("/pages/create/create.html", { type: "create" });
                 appBar.hide();
+                WinJS.Navigation.navigate("/pages/create/create.html", { type: "create" });
             });
 
             deleteSetButton.listen("click", function (e) {
                 e.preventDefault();
+                e.stopPropagation();
                 var setListView = document.getElementById("set-list").winControl;
 
                 if (setListView) {
                     setListView.selection.getItems().done(function (sets) {
-                        if (sets.length > 0) {
-                            var msg = new Windows.UI.Popups.MessageDialog(
+                        var msg = new Windows.UI.Popups.MessageDialog(
                                 "Сигурни ли сте, че искате да изтриете.");
 
-                            msg.commands.append(new Windows.UI.Popups.UICommand(
-                                "Да", function () {
-                                    for (var i = sets.length - 1; i >= 0; i--) {
-                                        Logic.deleteSet(sets[i].index).then(function () {
-                                            ViewModels.removeSet(sets[i].index);
-                                        });
+                        msg.commands.append(new Windows.UI.Popups.UICommand(
+                            "Да", null, 0));
+                        msg.commands.append(new Windows.UI.Popups.UICommand(
+                            "Не", null, 1));
+
+                        msg.defaultCommandIndex = 0;
+                        msg.cancelCommandIndex = 1;
+
+                        if (sets.length > 0) {
+                            try {
+                                msg.showAsync().done(function (command) {
+                                    if (command) {
+                                        if (command.id == 0) {
+                                            for (var i = sets.length - 1; i >= 0; i--) {
+                                                Logic.deleteSetAsync(sets[i].index).then(function () {
+                                                    ViewModels.loadSets();
+                                                });
+                                            }
+                                        }
                                     }
-
-                                    ViewModels.loadSets();
-                                }));
-                            msg.commands.append(new Windows.UI.Popups.UICommand(
-                                "Не", function () {
-
-                                }));
-
-                            msg.defaultCommandIndex = 0;
-                            msg.cancelCommandIndex = 1;
-
-                            msg.showAsync();
+                                });
+                            } catch (e) {
+                                // Bug fix: sometimes the message dialog tries to show itself a multiple times and throws an exception.
+                                // This is a workaround, that gets rid of the exception.
+                            }
                         }
                     });
                 }
@@ -129,7 +135,9 @@
 
                 Windows.Storage.FileIO.readTextAsync(file).then(function (text) {
                     ViewModels.addSetObject(JSON.parse(text));
-                    ViewModels.loadSets();
+                    Logic.saveSetsAsync().then(function () {
+                        ViewModels.loadSets();
+                    });
                 });
             }
         }

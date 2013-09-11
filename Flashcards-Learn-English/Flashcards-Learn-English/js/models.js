@@ -1,15 +1,14 @@
 ﻿/// <reference path="//Microsoft.WinJS.1.0/js/base.js" />
 (function () {
-    var SetModel = WinJS.Class.define(function (title, iconUrl) {
+    var SetModel = WinJS.Class.define(function (title, iconToken) {
         this.title = title;
-        this.iconUrl = iconUrl;
+        this.iconToken = iconToken;
         this.currentDeck = new Models.DeckModel();
         this.currentSession = 1;
         this.decks = new Array(new Models.DeckModel(0), new Models.DeckModel(1), new Models.DeckModel(2));
-        this.lastModified = null;
     }, {
         title: "",
-        iconUrl: "",
+        iconToken: "",
         currentDeck: {},
         currentSession: 0,
         decks: {}
@@ -36,7 +35,6 @@
         enDefinition: "",
         enPartOfSpeech: "",
         enPronunciation: "",
-        enPronunciationAudio:"",
         deckId: 0
     });
 

@@ -10,7 +10,7 @@
 
     #set-page #card-state div {
         display: -ms-grid;
-        -ms-grid-columns: auto 1fr;
+        -ms-grid-columns: 10px 85px 1fr 10px;
         -ms-grid-rows: 1fr;
         -ms-grid-column: 1;
         width: 100%;
@@ -28,14 +28,13 @@
 
             #set-page #card-state div span:nth-child(1) {
                 display: block;
-                width: 90px;
-                -ms-grid-column: 1;
+                -ms-grid-column: 2;
                 font-family: "Segoe UI Semibold";
                 font-size: 11pt;
             }
 
             #set-page #card-state div span:nth-child(2) {
-                -ms-grid-column: 2;
+                -ms-grid-column: 3;
                 font-family: "Segoe UI Semilight";
                 font-size: 42pt;
             }
@@ -146,7 +145,6 @@
                 -ms-grid-row: 1;
                 width: 100%;
                 height: 100%;
-                padding-left: 20px;
             }
 
         #set-page #current-card #current-back div:nth-of-type(3) {
@@ -235,33 +233,23 @@
 }
 
 #set-page #current-card #current-back #playPronounciation {
-    background: url("ms-appx:///images/sound.png");
-    background-size: contain;
-    background-repeat: no-repeat;
     border: none;
-    width: 30px;
-    height: 30px;
-    min-width: 30px;
+    font-size: 20pt;
+    background: none;
 }
 
 #current-correct {
-    background: url("ms-appx:///images/Action-ok-icon.png");
-    background-size: contain;
-    background-repeat: no-repeat;
     border: none;
-    width: 75px;
-    height: 75px;
-    min-width: 75px;
+    font-size: 40pt;
+    background: none;
+    color: #25d500;
 }
 
 #current-incorrect {
-    background: url("ms-appx:///images/Action-cancel-icon.png");
-    background-size: contain;
-    background-repeat: no-repeat;
     border: none;
-    width: 75px;
-    height: 75px;
-    min-width: 75px;
+    font-size: 40pt;
+    background: none;
+    color: #ff2c00;
 }
 
 .set section[role=main] {

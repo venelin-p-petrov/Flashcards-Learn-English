@@ -9,6 +9,7 @@
     var yellowCards = new WinJS.Binding.as({ number: 0 });
     var greenCards = new WinJS.Binding.as({ number: 0 });
     var currentCards = new WinJS.Binding.as({ number: 0 });
+    var searchQuery = WinJS.Binding.as({ title: "" });
 
     var setCurrentCard = function (setId) {
         currentCard.card = Data.getCurrentCard(setId);
@@ -42,7 +43,6 @@
             cardList.push(cardDTOs[i]);
         }
     }
-    var searchQuery = WinJS.Binding.as({ title: "" });
 
     var filteredSets = setList.createFiltered(function (item) {
 
@@ -63,35 +63,24 @@
     WinJS.Namespace.define("ViewModels", {
         loadSets: loadSets,
         sets: setList,
-        loadCards: loadCards,
-        cards: cardList,
-        getCards: function (setId) {
-            return Data.getCards(setId);
-        },
-        emptyNewCards: function () {
-            Data.emptyNewCards();
-        },
         getSetById: function (id) {
             return Data.getSetById(id);
         },
-        setCurrentCard: setCurrentCard,
-        currentCard: currentCard,
-        setCardState: setCardState,
-        redCards: redCards,
-        yellowCards: yellowCards,
-        greenCards: greenCards,
-        currentCards: currentCards,
-        addSet: function (title, iconUrl) {
-            var set = new Models.SetModel(title, iconUrl);
-            
+        addSet: function (title, iconToken) {
+            var set = new Models.SetModel(title, iconToken);
             Data.addSet(set);
             return set;
         },
-        addSetObject: function(set){
+        addSetObject: function (set) {
             Data.addSet(set);
         },
         removeSet: function (index) {
             Data.removeSet(index);
+        },
+        loadCards: loadCards,
+        cards: cardList,
+        getCards: function (setId) {
+            return Data.getCards(setId);
         },
         addCard: function (bgWord, enWord, enDefinition, partOfSpeech, pronunciation) {
             Data.addCard(new Models.CardModel(bgWord, enWord, enDefinition, partOfSpeech, pronunciation));
@@ -99,6 +88,16 @@
         removeCard: function (setId, card) {
             Data.removeCard(setId, card);
         },
+        emptyNewCards: function () {
+            Data.emptyNewCards();
+        },
+        setCurrentCard: setCurrentCard,
+        currentCard: currentCard,
+        currentCards: currentCards,
+        setCardState: setCardState,
+        redCards: redCards,
+        yellowCards: yellowCards,
+        greenCards: greenCards,
         searchSets: filteredSets,
         submitSearchText: changeSearchQuery,
         searchQuery: searchQuery

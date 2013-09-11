@@ -9,8 +9,20 @@
         return sets;
     }
 
+    var setSets = function (obj) {
+        sets = obj;
+    }
+
     var getSetById = function (id) {
         return sets[id];
+    }
+
+    var addSet = function (setModel) {
+        sets.push(setModel);
+    }
+
+    var removeSet = function (index) {
+        sets.splice(index, 1);
     }
 
     var getCards = function (setId) {
@@ -50,30 +62,29 @@
     }
 
     var removeCard = function (setId, card) {
-        var set = sets[setId];
-        for (var i = 0; i < set.decks.length; i++) {
-            var ind = set.decks[i].cards.indexOf(card);
-            if (ind >= 0) {
-                Logic.removeCardFromDeck(set.decks[i], ind);
+        if (setId) {
+            var set = sets[setId];
+            for (var i = 0; i < set.decks.length; i++) {
+                var ind = set.decks[i].cards.indexOf(card);
+                if (ind >= 0) {
+                    Logic.removeCardFromDeck(set.decks[i], ind);
+                }
             }
-        }
 
-        var indc = set.currentDeck.cards.indexOf(card);
-        if (indc >= 0) {
-            Logic.removeCardFromDeck(set.currentDeck, indc);
+            var indc = set.currentDeck.cards.indexOf(card);
+            if (indc >= 0) {
+                Logic.removeCardFromDeck(set.currentDeck, indc);
+            }
+
+            cards.splice(cards.indexOf(card), 1);
+        } else {
+            newCards.splice(newCards.indexOf(card), 1);
+            cards.splice(cards.indexOf(card), 1);
         }
     }
 
     var getCurrentCard = function (id) {
         return sets[id].currentDeck.cards[0];
-    }
-
-    var addSet = function (setModel) {
-        sets.push(setModel);
-    }
-
-    var removeSet = function (index) {
-        sets.splice(index, 1);
     }
 
     var getRedCards = function (setId) {
@@ -107,17 +118,17 @@
     }
 
     WinJS.Namespace.define("Data", {
-        sets: sets,
         getSets: getSets,
+        setSets: setSets,
         getSetById: getSetById,
+        addSet: addSet,
+        removeSet: removeSet,
         getCards: getCards,
         emptyCards: emptyCards,
         emptyNewCards: emptyNewCards,
         addCard: addCard,
         removeCard: removeCard,
         getCurrentCard: getCurrentCard,
-        addSet: addSet,
-        removeSet: removeSet,
         getRedCards: getRedCards,
         getYellowCards: getYellowCards,
         getGreenCards: getGreenCards,

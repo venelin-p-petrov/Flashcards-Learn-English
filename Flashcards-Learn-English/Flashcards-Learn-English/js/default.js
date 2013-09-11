@@ -15,36 +15,38 @@
     app.addEventListener("activated", function (args) {
         if (args.detail.kind === activation.ActivationKind.launch) {
             if (args.detail.previousExecutionState !== activation.ApplicationExecutionState.terminated) {
-                
+
                 if (!appData.localSettings.values["already-run"]) {
-                    Logic.loadDefault().then(function () {
-                        Logic.loadSetsAsync().then(function (files) {
-                            files.forEach(function (file) {
-                                Windows.Storage.FileIO.readTextAsync(file).then(function (text) {
-                                    ViewModels.addSetObject(JSON.parse(text));
-                                    ViewModels.loadSets();
-                                });
-                            });
-                        });
-                    });
+                    //Logic.loadDefault().then(function () {
+                    //    Logic.loadSetsAsync().then(function (files) {
+                    //        files.forEach(function (file) {
+                    //            Windows.Storage.FileIO.readTextAsync(file).then(function (text) {
+                    //                var set = JSON.parse(text);
+                    //                ViewModels.addSetObject(set);
+                    //                Logic.loadIcon(set.iconToken);
+                    //                ViewModels.loadSets();
+                    //            });
+                    //        });
+                    //    });
+                    //});
                 }
                 else {
-                    Logic.loadSetsAsync().then(function (files) {
-                        files.forEach(function (file) {
-                            Windows.Storage.FileIO.readTextAsync(file).then(function (text) {
-                                ViewModels.addSetObject(JSON.parse(text));
-                                ViewModels.loadSets();
-                            });
-                        });
-                    });
+                    
                 }
 
                 appData.localSettings.values["already-run"] = true;
 
             } else {
-                // TODO: This application has been reactivated from suspension.
-                // Restore application state here.
+                
             }
+
+            appData.localFolder.getFileAsync("SavedSets").then(function (file) {
+                Windows.Storage.FileIO.readTextAsync(file).then(function (text) {
+                    Data.setSets(JSON.parse(text));
+                    Logic.loadIcons();
+                    ViewModels.loadSets();
+                });
+            });
 
             if (app.sessionState.history) {
                 nav.history = app.sessionState.history;
@@ -86,7 +88,7 @@
         // suspended, call args.setPromise().
         app.sessionState.history = nav.history;
 
-
+        Logic.saveSetsAsync();
     };
 
     app.start();

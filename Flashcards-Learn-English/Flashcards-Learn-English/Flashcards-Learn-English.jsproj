@@ -46,23 +46,23 @@
   <PropertyGroup>
     <TargetPlatformIdentifier>Windows</TargetPlatformIdentifier>
     <TargetPlatformVersion>8.0</TargetPlatformVersion>
-    <DefaultLanguage>en-US</DefaultLanguage>
-    <PackageCertificateKeyFile>Flashcards-Learn-English_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <DefaultLanguage>bg-bg</DefaultLanguage>
+    <PackageCertificateKeyFile>Flashcards-Learn-English_StoreKey.pfx</PackageCertificateKeyFile>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <PackageCertificateThumbprint>2F8644AC0B2538F43EACE91790FEAC385465556C</PackageCertificateThumbprint>
   </PropertyGroup>
   <ItemGroup>
     <AppxManifest Include="package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
     <Content Include="css\default.css" />
-    <Content Include="images\Action-cancel-icon.png" />
-    <Content Include="images\Action-ok-icon.png" />
+    <None Include="Flashcards-Learn-English_StoreKey.pfx" />
     <Content Include="images\animals.jpg" />
     <Content Include="images\atHome.jpg" />
     <Content Include="images\atSchool.JPG" />
     <Content Include="images\card-file-icon.png" />
     <Content Include="images\logo.png" />
     <Content Include="images\smalllogo.png" />
-    <Content Include="images\sound.png" />
     <Content Include="images\splashscreen.png" />
     <Content Include="images\storelogo.png" />
     <Content Include="js\data.js" />
@@ -73,6 +73,7 @@
     <Content Include="js\navigator.js" />
     <Content Include="js\viewModels.js" />
     <Content Include="js\xmlHttpRequest.js" />
+    <None Include="Package.StoreAssociation.xml" />
     <Content Include="pages\create\create.css" />
     <Content Include="pages\create\create.html" />
     <Content Include="pages\create\create.js" />

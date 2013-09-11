@@ -26,6 +26,7 @@
 
             changeSetButton.listen("click", function (e) {
                 e.preventDefault();
+                e.stopPropagation();
                 WinJS.Navigation.navigate("/pages/create/create.html", { type: "change", setId: options.setId });
                 appBar.hide();
             });
@@ -53,9 +54,9 @@
                 if (set.currentDeck.cards.length == 0) {
                     Logic.updateCurrentDeck(set);
                 }
-                
-                set.lastModified = Date.now();
-                Logic.saveSet(set);
+
+                //Logic.saveSet(set);
+                Logic.saveSetsAsync();
                 SetCodeBehind.callUpdate(options.setId);
 
                 cardFront.style.display = "-ms-grid";
@@ -77,8 +78,8 @@
                     Logic.updateCurrentDeck(set);
                 }
 
-                set.lastModified = Date.now();
-                Logic.saveSet(set);
+                //Logic.saveSet(set);
+                Logic.saveSetsAsync();
                 SetCodeBehind.callUpdate(options.setId);
 
                 cardFront.style.display = "-ms-grid";
@@ -88,24 +89,20 @@
                     { mechanism: "transition" });
             });
 
-            
             playPronounciationButton.addEventListener("click", function (e) {
                 e.preventDefault();
                 var englishWordElement = document.getElementById("englishWord");
                 var englishWord = englishWordElement.innerText.toLowerCase();
                 XMLRequests.GetEnPronounciationAudioUrl(englishWord).then(function (audioUrl) {
-                    var audtag = null;
-                    if (!audtag) {
-                        audtag = document.createElement('audio');
-                        audtag.setAttribute("id", "audtag");
-                        audtag.setAttribute("controls", "true");
-                        audtag.setAttribute("msAudioCategory", "backgroundcapablemedia");
-                        audtag.setAttribute("src", audioUrl);
-                        
-                        document.getElementById("enPronunciation").appendChild(audtag);
-                        audtag.load();
-                        audtag.play();
-                    }
+                    audtag = document.createElement('audio');
+                    audtag.setAttribute("id", "audtag");
+                    audtag.setAttribute("controls", "true");
+                    audtag.setAttribute("msAudioCategory", "backgroundcapablemedia");
+                    audtag.setAttribute("src", audioUrl);
+
+                    document.getElementById("enPronunciation").appendChild(audtag);
+                    audtag.load();
+                    audtag.play();
                 });
             });
         },

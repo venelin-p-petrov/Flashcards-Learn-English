@@ -5,9 +5,9 @@
 (function () {
     "use strict";
 
+    var storagePermissions = Windows.Storage.AccessCache.StorageApplicationPermissions;
+
     WinJS.UI.Pages.define("/pages/create/create.html", {
-        // This function is called whenever a user navigates to this page. It
-        // populates the page elements with the app's data.
         init: function (element, options) {
             CreateCodeBehind.callLoadCards(options.setId);
         },
@@ -21,10 +21,10 @@
             }
             if (!isNaN(options.setId)) {
                 var set = ViewModels.getSetById(options.setId);
-                WinJS.Binding.processAll(element, { title: title, setTitle: set.title, iconUrl: set.iconUrl });
+                WinJS.Binding.processAll(element, { title: title, setTitle: set.title, iconToken: set.iconToken });
             }
             else {
-                WinJS.Binding.processAll(element, { title: title, setTitle: "", iconUrl: "" });
+                WinJS.Binding.processAll(element, { title: title, setTitle: "", iconToken: "" });
             }
 
             var appBar = document.getElementById("appbar").winControl;
@@ -86,62 +86,55 @@
                 openPicker.fileTypeFilter.replaceAll([".png", ".jpg", ".gif", ".jpeg"]);
 
                 openPicker.pickSingleFileAsync().then(function (fileToSave) {
-                    var iconUrlElement = document.getElementById("set-icon");
-                    
-                    Logic.saveIconToLocalData(fileToSave);
-                    Logic.loadIconFromLocalDataAsync().then(function (files) {
-                        files.forEach(function (loadedFile) {
-                            if (fileToSave.name==loadedFile.name) {
-                                iconUrlElement.innerText = URL.createObjectURL(loadedFile, { oneTimeOnly: false });
-                            }
-                        });
-                    });
+                    var iconNameElement = document.getElementById("set-icon");
+
+                    storagePermissions.futureAccessList.addOrReplace("set-pick-icon", fileToSave);
+                    iconNameElement.innerText = fileToSave.name;
                 });
             });
 
             createSetButton.addEventListener("click", function (e) {
                 e.preventDefault();
                 var title = document.getElementById("set-title").value;
-                var iconUrl = document.getElementById("set-icon").innerText;
-                if (!iconUrl) {
-                    iconUrl = "/images/card-file-icon.png";
-                }
-                
-                var set = null;
-                var cards = [];
-                if (options.type == "create") {
-                    set = ViewModels.addSet(title, iconUrl);
-                    set.lastModified = Date.now();
-                    cards = ViewModels.getCards();
-                    ViewModels.emptyNewCards();
-                    for (var i = 0; i < cards.length; i++) {
-                        Logic.addCardToDeck(cards[i], set.decks[cards[i].deckId]);
-                    }
+                storagePermissions.futureAccessList.getFileAsync("set-pick-icon").done(function (iconFile) {
+                    Logic.saveIconAsync(iconFile).then(function (iconToken) {
+                        Logic.loadIcon(iconToken);
 
-                    ViewModels.loadCards();
-                }
-                else if (options.type == "change") {
-                    set = ViewModels.getSetById(options.setId);
-                    set.title = title;
-                    set.iconUrl = iconUrl;
-                    set.lastModified = Date.now();
-                    cards = ViewModels.getCards(options.setId)
+                        var set = null;
+                        var cards = [];
+                        if (options.type == "create") {
+                            set = ViewModels.addSet(title, iconToken);
+                            cards = ViewModels.getCards();
+                            ViewModels.emptyNewCards();
+                            for (var i = 0; i < cards.length; i++) {
+                                Logic.addCardToDeck(cards[i], set.decks[cards[i].deckId]);
+                            }
 
-                    for (var i = 0; i < set.decks.length; i++) {
-                        set.decks[i].cards = new Array();
-                    }
-                    set.currentDeck.cards = new Array();
+                            ViewModels.loadCards();
+                        }
+                        else if (options.type == "change") {
+                            set = ViewModels.getSetById(options.setId);
+                            set.title = title;
+                            set.iconToken = iconToken;
+                            cards = ViewModels.getCards(options.setId)
 
-                    for (var i = 0; i < cards.length; i++) {
-                        Logic.addCardToDeck(cards[i], set.decks[cards[i].deckId]);
-                    }
-                    ViewModels.emptyNewCards();
-                    ViewModels.loadCards(options.setId);
-                }
-                
-                Logic.updateCurrentDeck(set);
-                Logic.saveSet(set);
-                WinJS.Navigation.navigate("/pages/home/home.html");
+                            for (var i = 0; i < set.decks.length; i++) {
+                                set.decks[i].cards = new Array();
+                            }
+                            set.currentDeck.cards = new Array();
+
+                            for (var i = 0; i < cards.length; i++) {
+                                Logic.addCardToDeck(cards[i], set.decks[cards[i].deckId]);
+                            }
+                            ViewModels.emptyNewCards();
+                            ViewModels.loadCards(options.setId);
+                        }
+
+                        Logic.updateCurrentDeck(set);
+                        Logic.saveSetsAsync();
+                        WinJS.Navigation.navigate("/pages/home/home.html");
+                    });
+                });
             });
 
             generateWordButton.addEventListener("click", function (e) {
@@ -216,7 +209,11 @@
                         msg.defaultCommandIndex = 0;
                         msg.cancelCommandIndex = 1;
 
-                        msg.showAsync();
+                        try {
+                            msg.showAsync();
+                        } catch (e) {
+
+                        }
                     }
                 });
             });
